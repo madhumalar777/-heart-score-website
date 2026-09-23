@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Heart Score — Turn Your Story Into a Song</title>
+<title>Heart Score — Your Story, Your Soundtrack</title>
+<meta name="description" content="Heart Score creates personalised original songs for celebrations, events, memories and meaningful moments.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -151,50 +152,178 @@
 
   :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+  /* FINAL POLISH */
+  body{
+    background:
+      radial-gradient(circle at 8% 8%, rgba(201,160,99,.08), transparent 24rem),
+      radial-gradient(circle at 92% 72%, rgba(90,27,40,.06), transparent 28rem),
+      var(--cream);
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.18;
+    background-image:radial-gradient(rgba(42,10,16,.16) .55px,transparent .55px);
+    background-size:8px 8px;
+    z-index:-1;
+  }
+  nav{box-shadow:0 8px 28px rgba(42,10,16,.12)}
+  .hero{
+    isolation:isolate;
+    overflow:hidden;
+    min-height:620px;
+    display:flex;
+    align-items:center;
+  }
+  .hero::before,.hero::after{
+    content:"";
+    position:absolute;
+    border:1px solid rgba(201,160,99,.18);
+    border-radius:50%;
+    pointer-events:none;
+  }
+  .hero::before{width:420px;height:420px;left:-190px;bottom:-250px}
+  .hero::after{width:300px;height:300px;right:-130px;top:-150px}
+  .hero-inner{position:relative;z-index:2;padding-top:18px}
+  .hero h1{
+    font-size:clamp(2.45rem,5vw,4.15rem);
+    line-height:1.08;
+    letter-spacing:-.025em;
+    margin-top:12px;
+    text-wrap:balance;
+  }
+  .hero .tagline{
+    margin:20px 0 18px;
+    font-size:1.08rem;
+  }
+  .hero p.sub{margin-top:0}
+  .hero-actions{margin-top:30px}
+  .eyebrow{letter-spacing:.18em}
+  .section-head{margin-bottom:38px}
+  .section-head h2{font-size:clamp(1.8rem,3vw,2.45rem);letter-spacing:-.02em}
+  section{padding:76px 0}
+  .card,.price-card,.song-card{
+    background:rgba(255,255,255,.58);
+    box-shadow:0 10px 30px rgba(42,10,16,.045);
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+  }
+  .card:hover,.price-card:hover,.song-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 38px rgba(42,10,16,.09);
+  }
+  .card{padding:24px 20px;border-radius:12px}
+  .grid5{gap:16px}
+  .process{gap:0}
+  .step{padding:0 20px}
+  .step .num{font-size:1.45rem}
+  .song-card{border-radius:12px}
+  .price-card{border-radius:14px;padding:26px 24px}
+  .price-card.featured{transform:translateY(-5px)}
+  .price-card.featured:hover{transform:translateY(-9px)}
+  .about{
+    max-width:920px;
+    grid-template-columns:250px 1fr;
+    gap:52px;
+  }
+  .about-mark{
+    width:250px;
+    border-radius:18px;
+    box-shadow:inset 0 0 0 1px rgba(201,160,99,.08);
+  }
+  .about > div:last-child{text-align:left}
+  #about .section-head{text-align:center}
+  .contact-grid{gap:56px}
+  .contact-list a,.contact-list div{transition:color .2s ease;padding:12px 0}
+  .contact-list a:hover{color:var(--gold-soft)}
+  input,textarea{
+    background:rgba(246,238,227,.06);
+    border-radius:10px;
+  }
+  form .btn-primary{box-shadow:0 8px 20px rgba(201,160,99,.16)}
+  footer{padding-top:46px}
+  .foot-grid{align-items:center}
+  @media(max-width:760px){
+    .hero{min-height:560px;padding:52px 0 70px}
+    .hero-inner{padding-top:0}
+    .hero h1{font-size:2.35rem}
+    .hero .tagline{margin:16px 0 16px}
+    section{padding:62px 0}
+    .section-head{margin-bottom:30px}
+    .grid5{grid-template-columns:1fr 1fr}
+    .about{grid-template-columns:1fr;gap:28px;text-align:center}
+    .about-mark{width:180px;margin:0 auto}
+    .about > div:last-child{text-align:center}
+  }
+  @media(max-width:520px){
+    .wrap{padding:0 18px}
+    .grid5{grid-template-columns:1fr}
+    .hero h1{font-size:2.05rem}
+    .hero-actions{flex-direction:column;align-items:stretch}
+    .btn-primary,.btn-ghost{text-align:center}
+    .price-card.featured{transform:none}
+  }
+
+
+/* FIRST-PAGE MOTION PASS — adapted from the supplied reference */
+:root{--motion:cubic-bezier(.16,1,.3,1);--gold-glow:rgba(201,160,99,.28)}
+.hero{min-height:calc(100vh - 72px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:radial-gradient(circle at 18% 24%,rgba(90,27,40,.92),transparent 34%),radial-gradient(circle at 82% 70%,rgba(201,160,99,.10),transparent 25%),linear-gradient(135deg,#3a101b 0%,#2a0a10 48%,#16050a 100%)}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none;border:1px solid rgba(201,160,99,.11)}
+.hero::before{width:520px;height:520px;right:-220px;top:-180px}.hero::after{width:360px;height:360px;left:-180px;bottom:-170px}
+.hero-inner{max-width:760px;position:relative;z-index:2;animation:heroFirstIn 1s var(--motion) both}
+@keyframes heroFirstIn{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}
+.hero h1{font-size:clamp(3rem,7vw,6rem);line-height:.92;text-wrap:balance;text-shadow:0 12px 40px rgba(0,0,0,.22)}
+.kinetic-line{display:block;overflow:hidden}.kinetic-word{display:inline-block;opacity:0;filter:blur(12px);transform:translateY(105%) rotate(2deg);animation:wordIn .95s var(--motion) forwards}
+@keyframes wordIn{to{opacity:1;filter:blur(0);transform:translateY(0) rotate(0)}}
+.hero .tagline{font-family:'Playfair Display',serif;font-size:1.35rem;margin:24px 0 18px;color:var(--gold-soft);font-style:italic}
+.hero p.sub{max-width:610px;color:#eadfce;line-height:1.85}
+.wave-visualizer{margin:30px auto 0;max-width:520px;height:52px;display:flex;align-items:center;justify-content:center;gap:3px;opacity:.82}
+.wave-visualizer .bar{width:5px;border-radius:999px;background:linear-gradient(180deg,var(--gold),var(--gold-soft));animation:barPulse 1.4s ease-in-out infinite}
+.wave-visualizer .bar:nth-child(odd){animation-duration:1.2s}.wave-visualizer .bar:nth-child(2n){animation-duration:1.5s}.wave-visualizer .bar:nth-child(3n){animation-duration:1.7s}
+@keyframes barPulse{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1.15)}}
+.hero-actions{margin-top:34px}.btn-primary{position:relative;overflow:hidden}.btn-primary::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.32) 50%,transparent 80%);transform:translateX(-130%);transition:transform .65s var(--motion)}.btn-primary:hover::after{transform:translateX(130%)}
+.bg-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}.bg-particles span{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,var(--gold),transparent 70%);opacity:.25;filter:blur(1px);animation:float 18s infinite ease-in-out}.bg-particles span:nth-child(1){left:10%;top:20%}.bg-particles span:nth-child(2){left:30%;top:60%;animation-delay:3s}.bg-particles span:nth-child(3){left:60%;top:30%;animation-delay:6s}.bg-particles span:nth-child(4){left:80%;top:70%;animation-delay:9s}.bg-particles span:nth-child(5){left:50%;top:10%;animation-delay:12s}@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(15px,-25px) scale(1.15)}}
+.strip{background:linear-gradient(90deg,#3b0d1c,#5a1629,#3b0d1c);box-shadow:inset 0 1px rgba(228,201,155,.12),inset 0 -1px rgba(0,0,0,.18)}
+.marquee{overflow:hidden;white-space:nowrap;border-top:1px solid rgba(201,160,99,.2);border-bottom:1px solid rgba(201,160,99,.2);background:rgba(42,10,16,.96)}.marquee-track{display:inline-flex;width:max-content;gap:42px;padding:13px 0;animation:marquee 28s linear infinite}.marquee-track span{font-family:'Playfair Display',serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)}@keyframes marquee{to{transform:translateX(-50%)}}
+/* cursor movement */
+body.cursor-glow::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;background:radial-gradient(520px circle at var(--mx,50%) var(--my,50%),rgba(201,160,99,.055),transparent 62%);opacity:1}
+.liquid-cursor{position:fixed;left:0;top:0;width:20px;height:20px;border-radius:50%;pointer-events:none;z-index:10000;mix-blend-mode:screen;background:radial-gradient(circle,var(--gold-bright,#f1d39f),rgba(201,160,99,.18) 42%,transparent 72%);transform:translate3d(-50%,-50%,0);opacity:0;transition:opacity .25s ease}
+body.cursor-active .liquid-cursor{opacity:1}.cursor-blob{position:fixed;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:9997;background:rgba(228,201,155,.34);filter:blur(1px);transform:translate(-50%,-50%);animation:cursorFade .75s ease-out forwards}@keyframes cursorFade{0%{opacity:.7;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.8)}}
+@media(max-width:820px){.hero{min-height:calc(100svh - 70px);padding:70px 0 84px}.hero h1{font-size:clamp(2.7rem,12vw,4.3rem)}.hero-corner{display:none}.marquee-track{animation-duration:34s}}
+@media(max-width:600px){.hero h1{font-size:clamp(2.35rem,14vw,3.7rem)}.hero .tagline{font-size:1.18rem}.wave-visualizer{height:46px}.wave-visualizer .bar{width:4px}.hero-actions{gap:10px}.hero-actions a{width:100%;text-align:center}}
+@media(prefers-reduced-motion:reduce){.hero-inner,.kinetic-word,.bg-particles span,.marquee-track,.wave-visualizer .bar{animation:none!important}.kinetic-word{opacity:1;filter:none;transform:none}.liquid-cursor,.cursor-blob{display:none!important}}
 </style>
 </head>
 <body>
 
+<div class="page-veil" id="pageVeil" aria-hidden="true"></div>
+<div class="liquid-cursor" id="liquidCursor" aria-hidden="true"></div>
 <nav>
   <div class="wrap">
     <a class="brandmark" href="#top">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-9.6-9.4C1 7.4 3 4.5 6.2 4.2c2-.2 3.6 1 4.8 2.8 1.2-1.8 2.8-3 4.8-2.8C19 4.5 21 7.4 19.6 10.6 17.5 15.4 12 20 12 20Z" stroke="#C9A063" stroke-width="1.3"/><path d="M14.5 9.2v3.6a1.4 1.4 0 1 1-.7-1.2V8l3-.8v2.6" stroke="#C9A063" stroke-width="1.1" stroke-linecap="round"/></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-9.6-9.4C1 7.4 3 4.5 6.2 4.2c2-.2 3.6 1 4.8 2.8 1.2-1.8 2.8-3 4.8-2.8C19 4.5 21 7.4 19.6 10.6 17.5 15.4 12 20 12 20Z" stroke="#C9A063" stroke-width="1.3"/><path d="M14.5 9.2v3.6a1.4 1.4 0 1 1-.7-1.2V8l3-.8v2.6" stroke="#C9A063" stroke-width="1.1" stroke-linecap="round"/></svg>
       <span>Heart Score</span>
     </a>
-    <div class="navlinks" id="navlinks">
-      <a href="#services">Services</a>
-      <a href="#process">Process</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#about">About</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <a class="navcta" href="#contact">Create Your Song</a>
-    <button class="burger" id="burger" aria-label="Menu">☰</button>
+    <div class="navlinks" id="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#portfolio">Portfolio</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+    <a class="navcta" href="#contact">Create Your Song</a><button class="burger" id="burger" aria-label="Menu">☰</button>
   </div>
 </nav>
-
 <section class="hero" id="top">
-  <span class="hero-corner left">MUSIC<br>PEOPLE<br>EMOTIONS<br>FOREVER</span>
-  <span class="hero-corner right">MORE<br>THAN<br>MUSIC</span>
+  <div class="bg-particles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  <span class="hero-corner left">MUSIC<br>PEOPLE<br>EMOTIONS<br>FOREVER</span><span class="hero-corner right">MORE<br>THAN<br>MUSIC</span>
   <div class="wrap hero-inner">
     <div class="eyebrow">PERSONALISED SONGS · MEMORIES · MOMENTS</div>
-    <h1>Your story deserves<br>its own soundtrack.</h1>
+    <h1 aria-label="Your story deserves its own soundtrack."><span class="kinetic-line"><span class="kinetic-word">Your</span> <span class="kinetic-word" style="animation-delay:.06s">story</span> <span class="kinetic-word" style="animation-delay:.12s">deserves</span></span><span class="kinetic-line"><span class="kinetic-word" style="animation-delay:.2s">its</span> <span class="kinetic-word" style="animation-delay:.26s">own</span> <span class="kinetic-word" style="animation-delay:.32s">soundtrack.</span></span></h1>
     <p class="tagline">Turn your story into a song.</p>
     <p class="sub">Give your memories a melody. We turn your story, your people and your moments into an original song, composed and written only for you.</p>
-    <svg class="wave" viewBox="0 0 420 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-      <path d="M0 20h14M20 14v12M28 6v28M36 16v8M44 2v36M52 12v16M60 20h30M96 8v24M104 16v8M112 2v36M120 12v16M128 20h30M164 6v28M172 16v8M180 2v36M188 12v16M196 20h30M232 8v24M240 16v8M248 2v36M256 12v16M264 20h30M300 6v28M308 16v8M316 2v36M324 12v16M332 20h30M368 8v24M376 16v8M384 2v36M392 12v16M400 20h20"/>
-      <path d="M200 18a6 6 0 0 1 10-4.5A6 6 0 0 1 220 18c0 5-10 10-10 10s-10-5-10-10Z" fill="currentColor" stroke="none"/>
-    </svg>
-    <div class="hero-actions">
-      <a class="btn-primary" href="#contact">Create Your Song</a>
-      <a class="btn-ghost" href="https://wa.me/919489259322" target="_blank" rel="noopener">Message on WhatsApp</a>
-    </div>
+    <div class="wave-visualizer" aria-hidden="true"></div>
+    <div class="hero-actions"><a class="btn-primary" href="#contact">Create Your Song</a><a class="btn-ghost" href="https://wa.me/919489259322" target="_blank" rel="noopener">Message on WhatsApp</a></div>
   </div>
 </section>
-
 <div class="strip">Same stories. Different soundtracks.</div>
+<div class="marquee" aria-label="Heart Score themes"><div class="marquee-track"><span>Your story</span><span>•</span><span>Your people</span><span>•</span><span>Your moments</span><span>•</span><span>Your melody</span><span>•</span><span>Your story</span><span>•</span><span>Your people</span><span>•</span><span>Your moments</span><span>•</span><span>Your melody</span><span>•</span></div></div>
 
 <section id="services">
   <div class="wrap">
@@ -204,11 +333,11 @@
       <p>No templates, no stock tracks — every piece starts as a blank page and becomes yours.</p>
     </div>
     <div class="grid5">
-      <div class="card"><h3>Original Wedding Song</h3><p>A brand-new composition with lyrics written around how you met, your milestones and your journey to the altar.</p></div>
-      <div class="card"><h3>Wedding Film Soundtrack</h3><p>Background music scored to move with your wedding video, so every frame lands with the right feeling.</p></div>
-      <div class="card"><h3>Bridal & Couple Entry</h3><p>A short, powerful track built for the walk down the aisle or the couple's grand entrance.</p></div>
+      <div class="card"><h3>Original Celebration Song</h3><p>A brand-new composition with lyrics written around your people, milestones, memories and the moments that matter.</p></div>
+      <div class="card"><h3>Event Film Soundtrack</h3><p>Background music scored to move with your event video, so every frame lands with the right feeling.</p></div>
+      <div class="card"><h3>Special Entry Song</h3><p>A short, powerful track built for the a special entrance or unforgettable moment.</p></div>
       <div class="card"><h3>Bilingual & Multi-language</h3><p>Hindi with English, Tamil with English, Telugu with Bengali — blended to reflect where you both come from.</p></div>
-      <div class="card"><h3>Reimagined Covers</h3><p>A song you already love, rewritten with lyrics about the two of you.</p></div>
+      <div class="card"><h3>Reimagined Covers</h3><p>A song you already love, reimagined with lyrics around your story and your people.</p></div>
     </div>
   </div>
 </section>
@@ -224,7 +353,7 @@
       <div class="step"><div class="num">02</div><h3>Choose Your Style</h3><p>Pick a genre, language and mood, and send over any reference songs you love.</p></div>
       <div class="step"><div class="num">03</div><h3>Composition & Writing</h3><p>We compose the music and write the lyrics, then send you a first draft.</p></div>
       <div class="step"><div class="num">04</div><h3>Review & Refine</h3><p>You tell us what to adjust — a line, a verse, a feeling — and we refine it.</p></div>
-      <div class="step"><div class="num">05</div><h3>Receive Your Song</h3><p>Your finished song arrives as a high-quality file, ready for your big day.</p></div>
+      <div class="step"><div class="num">05</div><h3>Receive Your Song</h3><p>Your finished song arrives as a high-quality file, ready for your celebration.</p></div>
     </div>
   </div>
 </section>
@@ -234,26 +363,26 @@
     <div class="section-head">
       <div class="eyebrow" style="color:var(--gold-soft)">SONGS WE'VE MADE</div>
       <h2>Stories, set to music</h2>
-      <p>A few of the couples who turned their story into a song.</p>
+      <p>A few stories turned into songs.</p>
     </div>
     <div class="song-grid">
       <div class="song-card">
         <h3>Song Title Here</h3>
-        <div class="who">Couple's names · Genre</div>
+        <div class="who">Names · Genre</div>
         <audio controls data-song-slot="1"><source src="" type="audio/mpeg"></audio>
-        <p class="story">A line or two about their story goes here once you share it with us.</p>
+        <p class="story">A line or two about the story goes here once you share it with us.</p>
       </div>
       <div class="song-card">
         <h3>Song Title Here</h3>
-        <div class="who">Couple's names · Genre</div>
+        <div class="who">Names · Genre</div>
         <audio controls data-song-slot="2"><source src="" type="audio/mpeg"></audio>
-        <p class="story">A line or two about their story goes here once you share it with us.</p>
+        <p class="story">A line or two about the story goes here once you share it with us.</p>
       </div>
       <div class="song-card">
         <h3>Song Title Here</h3>
-        <div class="who">Couple's names · Genre</div>
+        <div class="who">Names · Genre</div>
         <audio controls data-song-slot="3"><source src="" type="audio/mpeg"></audio>
-        <p class="story">A line or two about their story goes here once you share it with us.</p>
+        <p class="story">A line or two about the story goes here once you share it with us.</p>
       </div>
     </div>
   </div>
@@ -281,10 +410,10 @@
         <h3>Premium</h3>
         <div class="amount">₹50,000 <small>– ₹75,000</small></div>
         <ul>
-          <li>Original song + bridal entry remix</li>
+          <li>Original song + special entry remix</li>
           <li>Bilingual support</li>
           <li>4 rounds of revisions</li>
-          <li>Wedding film soundtrack</li>
+          <li>Event film soundtrack</li>
         </ul>
         <a class="cta" href="#contact">Start with Premium</a>
       </div>
@@ -295,7 +424,7 @@
           <li>Original song + reimagined cover</li>
           <li>Multi-language blend</li>
           <li>Unlimited revisions</li>
-          <li>Full suite: entry, film, first dance</li>
+          <li>Full suite: entry, film, special moment</li>
           <li>Personal calls with the composer</li>
         </ul>
         <a class="cta" href="#contact">Start with Luxury</a>
@@ -312,7 +441,7 @@
     <div>
       <div class="eyebrow">THE ARTIST</div>
       <h2>About Heart Score</h2>
-      <p>Heart Score is built around one idea: that every couple's story is already a song, waiting to be written down. Founded by Vinodhan G, Heart Score composes original wedding music — not covers, not templates — built from your voice notes, your photos and the small details only the two of you would remember.</p>
+      <p>Heart Score is built around one idea: that every person's or group's story is already a song, waiting to be written down. Founded by Vinodhan G, Heart Score composes original celebration music — not covers, not templates — built from your voice notes, your photos and the small details only the two of you would remember.</p>
       <div class="role">FOUNDER — VINODHAN G</div>
     </div>
   </div>
@@ -333,10 +462,9 @@
         <div class="faq-q"><span>What if we don't like the first draft?</span><span class="plus">+</span></div>
         <div class="faq-a"><p>Every package includes revision rounds. Tell us exactly what to change — a line, a verse, the mood — and we'll refine it until it feels right.</p></div>
       </div>
-      <div class="faq-q"><span></span></div>
-      <div class="faq-item">
+<div class="faq-item">
         <div class="faq-q"><span>Can we use the song commercially?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Yes — once delivered, the song is yours to use for your wedding film, reels and personal keepsakes.</p></div>
+        <div class="faq-a"><p>Yes — once delivered, the song is yours to use for your event films, reels and personal keepsakes.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>Do you work with couples outside India?</span><span class="plus">+</span></div>
@@ -366,7 +494,7 @@
     <form action="mailto:helloheartscore@gmail.com" method="post" enctype="text/plain">
       <input type="text" placeholder="Your names" required>
       <input type="email" placeholder="Email" required>
-      <input type="text" placeholder="Wedding date (approx.)">
+      <input type="text" placeholder="Event / celebration date (approx.)">
       <textarea placeholder="Tell us a little about your story..."></textarea>
       <button type="submit" class="btn-primary" style="border:none;cursor:pointer">Send</button>
     </form>
@@ -418,6 +546,26 @@
       correctLevel: QRCode.CorrectLevel.M
     });
   }catch(e){ console.error('QR generation failed', e); }
+
+
+  // First-page wave visualizer + cursor movement/effects
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wave = document.querySelector('.wave-visualizer');
+  if(wave){ for(let i=0;i<32;i++){ const b=document.createElement('span'); b.className='bar'; b.style.height=(10+Math.random()*80)+'%'; b.style.animationDelay=(-Math.random()*1.4)+'s'; wave.appendChild(b); } }
+  const cursor=document.getElementById('liquidCursor'); let lastCursor=0;
+  addEventListener('pointermove',e=>{
+    document.body.style.setProperty('--mx',e.clientX+'px');
+    document.body.style.setProperty('--my',e.clientY+'px');
+    document.body.classList.add('cursor-glow','cursor-active');
+    if(cursor) cursor.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0)`;
+    if(!reduceMotion && performance.now()-lastCursor>45){
+      lastCursor=performance.now(); const blob=document.createElement('span'); blob.className='cursor-blob'; blob.style.left=e.clientX+'px'; blob.style.top=e.clientY+'px'; document.body.appendChild(blob); setTimeout(()=>blob.remove(),800);
+    }
+  },{passive:true});
+  if(!reduceMotion){
+    document.querySelectorAll('.btn-primary,.navcta').forEach(el=>el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.08}px,${(e.clientY-r.top-r.height/2)*.08}px)`;}));
+  }
+  document.querySelectorAll('.btn-primary,.navcta').forEach(el=>el.addEventListener('pointerleave',()=>el.style.transform=''));
 </script>
 </body>
 </html>
