@@ -3,569 +3,3691 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
 <title>Heart Score — Your Story, Your Soundtrack</title>
-<meta name="description" content="Heart Score creates personalised original songs for celebrations, events, memories and meaningful moments.">
+
+<meta name="description"
+      content="Heart Score creates personalised original songs for celebrations, events, memories and meaningful moments.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
+
 <style>
-  :root{
-    --maroon-950:#2A0A10;
-    --maroon-900:#37101A;
-    --maroon-700:#5A1B28;
-    --cream:#F6EEE3;
-    --cream-dim:#E7D9C6;
-    --gold:#C9A063;
-    --gold-soft:#E4C99B;
-    --line:rgba(201,160,99,0.35);
-    font-family:'Poppins',sans-serif;
-    box-sizing:border-box;
-    padding-top:env(safe-area-inset-top,0px);
-    padding-bottom:env(safe-area-inset-bottom,0px);
+
+/* =========================================================
+   HEART SCORE — ROOT
+========================================================= */
+
+:root{
+  --maroon-950:#2A0A10;
+  --maroon-900:#37101A;
+  --maroon-700:#5A1B28;
+
+  --cream:#F6EEE3;
+  --cream-dim:#E7D9C6;
+
+  --gold:#C9A063;
+  --gold-soft:#E4C99B;
+
+  --line:rgba(201,160,99,0.35);
+
+  font-family:'Poppins',sans-serif;
+  box-sizing:border-box;
+
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+
+*,
+*::before,
+*::after{
+  box-sizing:inherit;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:78px;
+}
+
+body{
+  background:
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(201,160,99,.08),
+      transparent 24rem
+    ),
+    radial-gradient(
+      circle at 92% 72%,
+      rgba(90,27,40,.06),
+      transparent 28rem
+    ),
+    var(--cream);
+
+  color:var(--maroon-950);
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+
+  opacity:.18;
+
+  background-image:
+    radial-gradient(
+      rgba(42,10,16,.16) .55px,
+      transparent .55px
+    );
+
+  background-size:8px 8px;
+
+  z-index:-1;
+}
+
+img,
+svg{
+  max-width:100%;
+  display:block;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+textarea{
+  font:inherit;
+}
+
+.wrap{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+h1,
+h2,
+h3,
+.logo{
+  font-family:'Playfair Display',serif;
+}
+
+.eyebrow{
+  font-size:.72rem;
+  letter-spacing:.18em;
+  color:var(--gold);
+  font-weight:500;
+}
+
+section{
+  padding:76px 0;
+}
+
+@media(max-width:700px){
+  section{
+    padding:64px 0;
   }
-  *,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
-  html{scroll-behavior:smooth;scroll-padding-top:78px}
-  body{background:var(--cream);color:var(--maroon-950);overflow-x:hidden}
-  img,svg{max-width:100%;display:block}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-  h1,h2,h3,.logo{font-family:'Playfair Display',serif}
-  .eyebrow{font-size:.72rem;letter-spacing:.14em;color:var(--gold);font-weight:500}
-  section{padding:96px 0}
-  @media(max-width:700px){section{padding:64px 0}}
+}
 
-  /* nav */
-  nav{position:sticky;top:0;z-index:50;background:rgba(42,10,16,0.92);backdrop-filter:blur(6px);
-      padding:16px 0;padding-top:calc(16px + env(safe-area-inset-top,0px))}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between}
-  .brandmark{display:flex;align-items:center;gap:10px;color:var(--cream)}
-  .brandmark span{font-size:1.3rem;letter-spacing:.04em;font-weight:600}
-  .navlinks{display:flex;gap:28px;font-size:.88rem;color:var(--cream-dim)}
-  .navlinks a:hover{color:var(--gold-soft)}
-  .navcta{background:var(--gold);color:var(--maroon-950);padding:9px 18px;border-radius:999px;font-size:.82rem;font-weight:500}
-  .burger{display:none;background:none;border:0;color:var(--cream);font-size:1.4rem}
-  @media(max-width:820px){
-    .navlinks{position:fixed;inset:64px 0 auto 0;background:var(--maroon-950);flex-direction:column;
-      padding:20px 24px 28px;gap:16px;transform:translateY(-130%);transition:transform .35s ease}
-    .navlinks.open{transform:translateY(0)}
-    .navcta{display:none}
-    .burger{display:block}
-  }
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-  /* hero */
-  .hero{background:radial-gradient(circle at 30% 20%,var(--maroon-700),var(--maroon-950) 65%);
-        color:var(--cream);padding:64px 0 90px;position:relative}
-  .hero-corner{position:absolute;top:100px;font-size:.68rem;letter-spacing:.12em;line-height:1.8;color:var(--gold-soft);opacity:.75}
-  .hero-corner.left{left:24px}
-  .hero-corner.right{right:24px;text-align:right}
-  @media(max-width:820px){.hero-corner{display:none}}
-  .hero-inner{max-width:640px;margin:0 auto;text-align:center;padding-top:40px}
-  .hero .tagline{font-size:1.05rem;color:var(--gold-soft);margin:14px 0 26px;font-style:italic}
-  .hero h1{font-size:2.5rem;line-height:1.2;font-weight:600}
-  @media(max-width:600px){.hero h1{font-size:1.9rem}}
-  .hero p.sub{margin:22px auto 0;max-width:460px;color:var(--cream-dim);line-height:1.7;font-size:.98rem}
-  .wave{margin:44px auto 0;max-width:420px;color:var(--gold)}
-  .hero-actions{margin-top:38px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-  .btn-primary{background:var(--gold);color:var(--maroon-950);padding:14px 30px;border-radius:999px;font-weight:500;font-size:.92rem}
-  .btn-ghost{border:1px solid var(--line);color:var(--cream);padding:14px 30px;border-radius:999px;font-size:.92rem}
-  .strip{background:var(--maroon-900);color:var(--gold-soft);text-align:center;padding:16px 0;font-family:'Playfair Display',serif;
-        font-style:italic;font-size:1.05rem;letter-spacing:.02em}
+nav{
+  position:sticky;
+  top:0;
+  z-index:50;
 
-  /* headings */
-  .section-head{max-width:560px;margin:0 auto 48px;text-align:center}
-  .section-head h2{font-size:2rem;font-weight:600;margin-top:8px}
-  .section-head p{margin-top:14px;color:#6B4A50;line-height:1.7}
+  background:rgba(42,10,16,.92);
 
-  /* services */
-  .grid5{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px}
-  .card{border:1px solid rgba(42,10,16,0.12);border-radius:4px;padding:28px 22px;background:#fff}
-  .card h3{font-size:1.08rem;font-weight:600;margin-bottom:10px}
-  .card p{font-size:.9rem;color:#6B4A50;line-height:1.65}
-  .note{font-size:.72rem;color:var(--gold);margin-top:12px;letter-spacing:.04em}
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
 
-  /* process */
-  .process{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;position:relative}
-  .step{padding:0 18px;border-left:1px solid var(--line);position:relative}
-  .step:first-child{border-left:none}
-  .step .num{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);font-style:italic}
-  .step h3{font-size:1rem;font-weight:600;margin:10px 0 8px}
-  .step p{font-size:.86rem;color:#6B4A50;line-height:1.6}
-  @media(max-width:820px){.process{grid-template-columns:1fr}.step{border-left:none;border-top:1px solid var(--line);padding:20px 0}.step:first-child{border-top:none}}
+  padding:16px 0;
 
-  /* portfolio */
-  .bg-dark{background:var(--maroon-950);color:var(--cream)}
-  .bg-dark .section-head p{color:var(--cream-dim)}
-  .song-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-  .song-card{border:1px solid var(--line);border-radius:4px;padding:22px}
-  .song-card h3{font-size:1rem;font-weight:600;font-family:'Playfair Display',serif}
-  .song-card .who{font-size:.8rem;color:var(--gold-soft);margin:4px 0 14px}
-  audio{width:100%;height:36px}
-  .song-card p.story{font-size:.85rem;color:var(--cream-dim);margin-top:12px;line-height:1.6}
+  padding-top:
+    calc(
+      16px +
+      env(safe-area-inset-top,0px)
+    );
 
-  /* pricing */
-  .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;align-items:stretch}
-  .price-card{border:1px solid rgba(42,10,16,0.12);border-radius:4px;padding:32px 26px;display:flex;flex-direction:column}
-  .price-card.featured{border-color:var(--gold);box-shadow:0 8px 30px rgba(201,160,99,.18)}
-  .price-card h3{font-size:1.1rem;font-weight:600}
-  .price-card .amount{font-family:'Playfair Display',serif;font-size:1.8rem;margin:12px 0 4px;color:var(--maroon-700)}
-  .price-card .amount small{font-size:.85rem;font-weight:400;color:#6B4A50}
-  .price-card ul{margin:20px 0 26px;font-size:.88rem;color:#5C3E44;line-height:2}
-  .price-card ul li{list-style:none;padding-left:18px;position:relative}
-  .price-card ul li::before{content:"—";position:absolute;left:0;color:var(--gold)}
-  .price-card .cta{margin-top:auto;text-align:center;border:1px solid var(--maroon-950);padding:11px;border-radius:999px;font-size:.85rem}
-  .price-card.featured .cta{background:var(--maroon-950);color:var(--cream)}
+  box-shadow:
+    0 8px 28px rgba(42,10,16,.12);
 
-  /* about */
-  .about{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center}
-  @media(max-width:760px){.about{grid-template-columns:1fr}}
-  .about-mark{aspect-ratio:1/1;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;background:var(--maroon-950);color:var(--gold-soft)}
-  .about h2{font-size:1.8rem;font-weight:600}
-  .about p{margin-top:16px;color:#6B4A50;line-height:1.75;font-size:.95rem}
-  .about .role{margin-top:18px;font-size:.85rem;letter-spacing:.06em;color:var(--gold)}
+  transition:
+    background .3s ease,
+    padding .3s ease,
+    box-shadow .3s ease;
+}
 
-  /* faq */
-  .faq-item{border-bottom:1px solid var(--line);padding:20px 0}
-  .faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:500;font-size:.98rem}
-  .faq-q .plus{color:var(--gold);font-size:1.2rem;transition:transform .25s}
-  .faq-item.open .plus{transform:rotate(45deg)}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
-  .faq-a p{padding-top:12px;color:#6B4A50;font-size:.9rem;line-height:1.7;max-width:640px}
+nav.scrolled{
+  background:rgba(42,10,16,.97);
 
-  /* contact */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-  @media(max-width:760px){.contact-grid{grid-template-columns:1fr}}
-  .contact-list a,.contact-list div{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);font-size:.92rem}
-  form{display:flex;flex-direction:column;gap:14px}
-  input,textarea{background:transparent;border:1px solid var(--line);border-radius:2px;padding:13px 14px;color:var(--cream);font-family:'Poppins',sans-serif;font-size:.9rem}
-  textarea{resize:vertical;min-height:100px}
-  ::placeholder{color:var(--cream-dim)}
-  form button{margin-top:6px}
+  box-shadow:
+    0 12px 35px rgba(42,10,16,.2);
+}
 
-  /* footer */
-  footer{background:var(--maroon-900);color:var(--cream-dim);padding:56px 0 32px}
-  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px}
-  .foot-grid .logo{color:var(--cream);font-size:1.2rem}
-  .foot-grid p{font-size:.85rem;margin-top:10px;max-width:280px;line-height:1.6}
-  #qrcode{background:var(--cream);padding:10px;border-radius:4px;display:inline-block}
-  .qr-cap{font-size:.7rem;letter-spacing:.1em;color:var(--gold-soft);margin-top:10px;text-align:center}
-  .foot-bottom{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.78rem}
+nav .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 
-  :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-  @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+.brandmark{
+  display:flex;
+  align-items:center;
+  gap:10px;
 
-  /* FINAL POLISH */
-  body{
-    background:
-      radial-gradient(circle at 8% 8%, rgba(201,160,99,.08), transparent 24rem),
-      radial-gradient(circle at 92% 72%, rgba(90,27,40,.06), transparent 28rem),
-      var(--cream);
-  }
-  body::before{
-    content:"";
+  color:var(--cream);
+}
+
+.brandmark span{
+  font-size:1.3rem;
+  letter-spacing:.04em;
+  font-weight:600;
+}
+
+.navlinks{
+  display:flex;
+  gap:28px;
+
+  font-size:.88rem;
+
+  color:var(--cream-dim);
+}
+
+.navlinks a{
+  position:relative;
+
+  transition:
+    color .2s ease;
+}
+
+.navlinks a::after{
+  content:"";
+
+  position:absolute;
+  left:0;
+  bottom:-7px;
+
+  width:0;
+  height:1px;
+
+  background:var(--gold);
+
+  transition:
+    width .25s ease;
+}
+
+.navlinks a:hover{
+  color:var(--gold-soft);
+}
+
+.navlinks a:hover::after,
+.navlinks a.active::after{
+  width:100%;
+}
+
+.navlinks a.active{
+  color:var(--gold-soft);
+}
+
+.navcta{
+  background:var(--gold);
+  color:var(--maroon-950);
+
+  padding:9px 18px;
+
+  border-radius:999px;
+
+  font-size:.82rem;
+  font-weight:500;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.navcta:hover{
+  box-shadow:
+    0 8px 25px rgba(201,160,99,.25);
+}
+
+.burger{
+  display:none;
+
+  background:none;
+  border:0;
+
+  color:var(--cream);
+
+  font-size:1.4rem;
+
+  cursor:pointer;
+}
+
+@media(max-width:820px){
+
+  .navlinks{
     position:fixed;
-    inset:0;
-    pointer-events:none;
-    opacity:.18;
-    background-image:radial-gradient(rgba(42,10,16,.16) .55px,transparent .55px);
-    background-size:8px 8px;
-    z-index:-1;
+
+    inset:
+      64px
+      0
+      auto
+      0;
+
+    background:var(--maroon-950);
+
+    flex-direction:column;
+
+    padding:20px 24px 28px;
+
+    gap:16px;
+
+    transform:translateY(-130%);
+
+    transition:
+      transform .35s ease;
   }
-  nav{box-shadow:0 8px 28px rgba(42,10,16,.12)}
-  .hero{
-    isolation:isolate;
-    overflow:hidden;
-    min-height:620px;
-    display:flex;
-    align-items:center;
+
+  .navlinks.open{
+    transform:translateY(0);
   }
-  .hero::before,.hero::after{
-    content:"";
-    position:absolute;
-    border:1px solid rgba(201,160,99,.18);
-    border-radius:50%;
-    pointer-events:none;
+
+  .navcta{
+    display:none;
   }
-  .hero::before{width:420px;height:420px;left:-190px;bottom:-250px}
-  .hero::after{width:300px;height:300px;right:-130px;top:-150px}
-  .hero-inner{position:relative;z-index:2;padding-top:18px}
-  .hero h1{
-    font-size:clamp(2.45rem,5vw,4.15rem);
-    line-height:1.08;
-    letter-spacing:-.025em;
-    margin-top:12px;
-    text-wrap:balance;
+
+  .burger{
+    display:block;
   }
-  .hero .tagline{
-    margin:20px 0 18px;
-    font-size:1.08rem;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      var(--maroon-700),
+      var(--maroon-950) 65%
+    );
+
+  color:var(--cream);
+
+  padding:64px 0 90px;
+
+  position:relative;
+
+  isolation:isolate;
+
+  overflow:hidden;
+
+  min-height:620px;
+
+  display:flex;
+  align-items:center;
+}
+
+.hero::before,
+.hero::after{
+  content:"";
+
+  position:absolute;
+
+  border:
+    1px solid
+    rgba(201,160,99,.18);
+
+  border-radius:50%;
+
+  pointer-events:none;
+}
+
+.hero::before{
+  width:420px;
+  height:420px;
+
+  left:-190px;
+  bottom:-250px;
+}
+
+.hero::after{
+  width:300px;
+  height:300px;
+
+  right:-130px;
+  top:-150px;
+}
+
+.hero-corner{
+  position:absolute;
+
+  top:100px;
+
+  font-size:.68rem;
+
+  letter-spacing:.12em;
+
+  line-height:1.8;
+
+  color:var(--gold-soft);
+
+  opacity:.75;
+}
+
+.hero-corner.left{
+  left:24px;
+}
+
+.hero-corner.right{
+  right:24px;
+  text-align:right;
+}
+
+@media(max-width:820px){
+
+  .hero-corner{
+    display:none;
   }
-  .hero p.sub{margin-top:0}
-  .hero-actions{margin-top:30px}
-  .eyebrow{letter-spacing:.18em}
-  .section-head{margin-bottom:38px}
-  .section-head h2{font-size:clamp(1.8rem,3vw,2.45rem);letter-spacing:-.02em}
-  section{padding:76px 0}
-  .card,.price-card,.song-card{
-    background:rgba(255,255,255,.58);
-    box-shadow:0 10px 30px rgba(42,10,16,.045);
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+
+.hero-inner{
+  max-width:700px;
+
+  margin:0 auto;
+
+  text-align:center;
+
+  padding-top:18px;
+
+  position:relative;
+
+  z-index:2;
+}
+
+.hero h1{
+  font-size:
+    clamp(
+      2.45rem,
+      5vw,
+      4.15rem
+    );
+
+  line-height:1.08;
+
+  font-weight:600;
+
+  letter-spacing:-.025em;
+
+  margin-top:12px;
+
+  text-wrap:balance;
+
+  animation:
+    heroText .9s ease both;
+}
+
+@keyframes heroText{
+
+  from{
+    opacity:0;
+    filter:blur(12px);
+    transform:translateY(20px);
   }
-  .card:hover,.price-card:hover,.song-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 16px 38px rgba(42,10,16,.09);
+
+  to{
+    opacity:1;
+    filter:blur(0);
+    transform:translateY(0);
   }
-  .card{padding:24px 20px;border-radius:12px}
-  .grid5{gap:16px}
-  .process{gap:0}
-  .step{padding:0 20px}
-  .step .num{font-size:1.45rem}
-  .song-card{border-radius:12px}
-  .price-card{border-radius:14px;padding:26px 24px}
-  .price-card.featured{transform:translateY(-5px)}
-  .price-card.featured:hover{transform:translateY(-9px)}
+
+}
+
+.hero .tagline{
+  font-size:1.08rem;
+
+  color:var(--gold-soft);
+
+  margin:20px 0 18px;
+
+  font-style:italic;
+
+  animation:
+    heroTagline 1s .15s ease both;
+}
+
+@keyframes heroTagline{
+
+  from{
+    opacity:0;
+    filter:blur(8px);
+  }
+
+  to{
+    opacity:1;
+    filter:blur(0);
+  }
+
+}
+
+.hero p.sub{
+  margin:0 auto;
+
+  max-width:500px;
+
+  color:var(--cream-dim);
+
+  line-height:1.7;
+
+  font-size:.98rem;
+
+  animation:
+    heroSub 1s .25s ease both;
+}
+
+@keyframes heroSub{
+
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* =========================================================
+   MUSIC VISUALIZER
+========================================================= */
+
+.wave{
+  margin:44px auto 0;
+
+  max-width:420px;
+
+  color:var(--gold);
+
+  height:80px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:4px;
+
+  position:relative;
+}
+
+.wave-visualizer{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:4px;
+
+  height:70px;
+
+  width:100%;
+}
+
+.wave-visualizer .bar{
+  width:4px;
+
+  min-height:8px;
+
+  max-height:64px;
+
+  border-radius:999px;
+
+  background:linear-gradient(
+    to top,
+    var(--gold),
+    var(--gold-soft)
+  );
+
+  animation:
+    musicBars 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes musicBars{
+
+  from{
+    transform:scaleY(.25);
+    opacity:.45;
+  }
+
+  to{
+    transform:scaleY(1);
+    opacity:1;
+  }
+
+}
+
+/* =========================================================
+   AUDIO PLAYER
+========================================================= */
+
+.hero-player{
+  max-width:460px;
+
+  margin:22px auto 0;
+
+  padding:14px 16px;
+
+  border:
+    1px solid
+    rgba(201,160,99,.25);
+
+  border-radius:14px;
+
+  background:
+    rgba(255,255,255,.05);
+
+  backdrop-filter:blur(12px);
+
+  -webkit-backdrop-filter:blur(12px);
+}
+
+.hero-player-label{
+  color:var(--gold-soft);
+
+  font-size:.72rem;
+
+  letter-spacing:.14em;
+
+  margin-bottom:8px;
+}
+
+.hero-player audio{
+  width:100%;
+  height:38px;
+}
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.hero-actions{
+  margin-top:30px;
+
+  display:flex;
+
+  gap:16px;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+}
+
+.btn-primary{
+  background:var(--gold);
+
+  color:var(--maroon-950);
+
+  padding:14px 30px;
+
+  border-radius:999px;
+
+  font-weight:500;
+
+  font-size:.92rem;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.btn-primary:hover{
+  box-shadow:
+    0 12px 30px rgba(201,160,99,.25);
+}
+
+.btn-ghost{
+  border:
+    1px solid
+    var(--line);
+
+  color:var(--cream);
+
+  padding:14px 30px;
+
+  border-radius:999px;
+
+  font-size:.92rem;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease;
+}
+
+.btn-ghost:hover{
+  background:
+    rgba(255,255,255,.06);
+
+  border-color:
+    var(--gold);
+}
+
+/* =========================================================
+   STRIP
+========================================================= */
+
+.strip{
+  background:var(--maroon-900);
+
+  color:var(--gold-soft);
+
+  text-align:center;
+
+  padding:16px 0;
+
+  font-family:'Playfair Display',serif;
+
+  font-style:italic;
+
+  font-size:1.05rem;
+
+  letter-spacing:.02em;
+}
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
+.section-head{
+  max-width:560px;
+
+  margin:0 auto 38px;
+
+  text-align:center;
+}
+
+.section-head h2{
+  font-size:
+    clamp(
+      1.8rem,
+      3vw,
+      2.45rem
+    );
+
+  font-weight:600;
+
+  margin-top:8px;
+
+  letter-spacing:-.02em;
+}
+
+.section-head p{
+  margin-top:14px;
+
+  color:#6B4A50;
+
+  line-height:1.7;
+}
+
+.bg-dark .section-head p{
+  color:var(--cream-dim);
+}
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.grid5{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(200px,1fr)
+    );
+
+  gap:16px;
+}
+
+.card{
+  border:
+    1px solid
+    rgba(42,10,16,.12);
+
+  border-radius:12px;
+
+  padding:24px 20px;
+
+  background:
+    rgba(255,255,255,.58);
+
+  box-shadow:
+    0 10px 30px
+    rgba(42,10,16,.045);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.card:hover{
+  transform:
+    translateY(-6px);
+
+  box-shadow:
+    0 18px 40px
+    rgba(42,10,16,.1);
+
+  border-color:
+    rgba(201,160,99,.4);
+}
+
+.card h3{
+  font-size:1.08rem;
+
+  font-weight:600;
+
+  margin-bottom:10px;
+}
+
+.card p{
+  font-size:.9rem;
+
+  color:#6B4A50;
+
+  line-height:1.65;
+}
+
+.note{
+  font-size:.72rem;
+
+  color:var(--gold);
+
+  margin-top:12px;
+
+  letter-spacing:.04em;
+}
+
+/* =========================================================
+   PROCESS
+========================================================= */
+
+.process{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(180px,1fr)
+    );
+
+  gap:0;
+
+  position:relative;
+}
+
+.step{
+  padding:0 20px;
+
+  border-left:
+    1px solid
+    var(--line);
+
+  position:relative;
+}
+
+.step:first-child{
+  border-left:none;
+}
+
+.step .num{
+  font-family:'Playfair Display',serif;
+
+  font-size:1.45rem;
+
+  color:var(--gold);
+
+  font-style:italic;
+}
+
+.step h3{
+  font-size:1rem;
+
+  font-weight:600;
+
+  margin:10px 0 8px;
+}
+
+.step p{
+  font-size:.86rem;
+
+  color:#6B4A50;
+
+  line-height:1.6;
+}
+
+@media(max-width:820px){
+
+  .process{
+    grid-template-columns:1fr;
+  }
+
+  .step{
+    border-left:none;
+
+    border-top:
+      1px solid
+      var(--line);
+
+    padding:20px 0;
+  }
+
+  .step:first-child{
+    border-top:none;
+  }
+}
+
+/* =========================================================
+   PORTFOLIO
+========================================================= */
+
+.bg-dark{
+  background:var(--maroon-950);
+
+  color:var(--cream);
+}
+
+.song-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(260px,1fr)
+    );
+
+  gap:20px;
+}
+
+.song-card{
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:12px;
+
+  padding:22px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  backdrop-filter:
+    blur(10px);
+
+  -webkit-backdrop-filter:
+    blur(10px);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.song-card:hover{
+  transform:
+    translateY(-5px);
+
+  box-shadow:
+    0 18px 40px
+    rgba(0,0,0,.2);
+
+  border-color:
+    rgba(201,160,99,.6);
+}
+
+.song-card h3{
+  font-size:1.15rem;
+
+  font-weight:600;
+
+  font-family:'Playfair Display',serif;
+}
+
+.song-card .who{
+  font-size:.8rem;
+
+  color:var(--gold-soft);
+
+  margin:4px 0 14px;
+}
+
+.song-card audio{
+  width:100%;
+
+  height:36px;
+}
+
+.song-card p.story{
+  font-size:.85rem;
+
+  color:var(--cream-dim);
+
+  margin-top:12px;
+
+  line-height:1.6;
+}
+
+/* =========================================================
+   PRICING
+========================================================= */
+
+.price-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(260px,1fr)
+    );
+
+  gap:22px;
+
+  align-items:stretch;
+}
+
+.price-card{
+  border:
+    1px solid
+    rgba(42,10,16,.12);
+
+  border-radius:14px;
+
+  padding:26px 24px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  background:
+    rgba(255,255,255,.58);
+
+  box-shadow:
+    0 10px 30px
+    rgba(42,10,16,.045);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.price-card:hover{
+  transform:
+    translateY(-5px);
+
+  box-shadow:
+    0 18px 40px
+    rgba(42,10,16,.1);
+}
+
+.price-card.featured{
+  border-color:var(--gold);
+
+  box-shadow:
+    0 12px 35px
+    rgba(201,160,99,.18);
+
+  transform:
+    translateY(-5px);
+}
+
+.price-card.featured:hover{
+  transform:
+    translateY(-9px);
+}
+
+.price-card h3{
+  font-size:1.1rem;
+
+  font-weight:600;
+}
+
+.price-card .amount{
+  font-family:'Playfair Display',serif;
+
+  font-size:1.8rem;
+
+  margin:12px 0 4px;
+
+  color:var(--maroon-700);
+}
+
+.price-card .amount small{
+  font-size:.85rem;
+
+  font-weight:400;
+
+  color:#6B4A50;
+}
+
+.price-card ul{
+  margin:20px 0 26px;
+
+  font-size:.88rem;
+
+  color:#5C3E44;
+
+  line-height:2;
+}
+
+.price-card ul li{
+  list-style:none;
+
+  padding-left:18px;
+
+  position:relative;
+}
+
+.price-card ul li::before{
+  content:"—";
+
+  position:absolute;
+
+  left:0;
+
+  color:var(--gold);
+}
+
+.price-card .cta{
+  margin-top:auto;
+
+  text-align:center;
+
+  border:
+    1px solid
+    var(--maroon-950);
+
+  padding:11px;
+
+  border-radius:999px;
+
+  font-size:.85rem;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.price-card .cta:hover{
+  background:
+    var(--maroon-950);
+
+  color:var(--cream);
+}
+
+.price-card.featured .cta{
+  background:var(--maroon-950);
+
+  color:var(--cream);
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+  max-width:920px;
+
+  display:grid;
+
+  grid-template-columns:
+    250px 1fr;
+
+  gap:52px;
+
+  align-items:center;
+}
+
+.about-mark{
+  width:250px;
+
+  aspect-ratio:1/1;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:18px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--maroon-950);
+
+  color:var(--gold-soft);
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(201,160,99,.08);
+
+  transition:
+    transform .35s ease;
+}
+
+.about h2{
+  font-size:1.8rem;
+
+  font-weight:600;
+}
+
+.about p{
+  margin-top:16px;
+
+  color:#6B4A50;
+
+  line-height:1.75;
+
+  font-size:.95rem;
+}
+
+.about .role{
+  margin-top:18px;
+
+  font-size:.85rem;
+
+  letter-spacing:.06em;
+
+  color:var(--gold);
+}
+
+@media(max-width:760px){
+
   .about{
-    max-width:920px;
-    grid-template-columns:250px 1fr;
-    gap:52px;
+    grid-template-columns:1fr;
   }
+
   .about-mark{
-    width:250px;
-    border-radius:18px;
-    box-shadow:inset 0 0 0 1px rgba(201,160,99,.08);
-  }
-  .about > div:last-child{text-align:left}
-  #about .section-head{text-align:center}
-  .contact-grid{gap:56px}
-  .contact-list a,.contact-list div{transition:color .2s ease;padding:12px 0}
-  .contact-list a:hover{color:var(--gold-soft)}
-  input,textarea{
-    background:rgba(246,238,227,.06);
-    border-radius:10px;
-  }
-  form .btn-primary{box-shadow:0 8px 20px rgba(201,160,99,.16)}
-  footer{padding-top:46px}
-  .foot-grid{align-items:center}
-  @media(max-width:760px){
-    .hero{min-height:560px;padding:52px 0 70px}
-    .hero-inner{padding-top:0}
-    .hero h1{font-size:2.35rem}
-    .hero .tagline{margin:16px 0 16px}
-    section{padding:62px 0}
-    .section-head{margin-bottom:30px}
-    .grid5{grid-template-columns:1fr 1fr}
-    .about{grid-template-columns:1fr;gap:28px;text-align:center}
-    .about-mark{width:180px;margin:0 auto}
-    .about > div:last-child{text-align:center}
-  }
-  @media(max-width:520px){
-    .wrap{padding:0 18px}
-    .grid5{grid-template-columns:1fr}
-    .hero h1{font-size:2.05rem}
-    .hero-actions{flex-direction:column;align-items:stretch}
-    .btn-primary,.btn-ghost{text-align:center}
-    .price-card.featured{transform:none}
+    width:180px;
+
+    margin:0 auto;
   }
 
+  .about > div:last-child{
+    text-align:center;
+  }
+}
 
-/* FIRST-PAGE MOTION PASS — adapted from the supplied reference */
-:root{--motion:cubic-bezier(.16,1,.3,1);--gold-glow:rgba(201,160,99,.28)}
-.hero{min-height:calc(100vh - 72px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:radial-gradient(circle at 18% 24%,rgba(90,27,40,.92),transparent 34%),radial-gradient(circle at 82% 70%,rgba(201,160,99,.10),transparent 25%),linear-gradient(135deg,#3a101b 0%,#2a0a10 48%,#16050a 100%)}
-.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none;border:1px solid rgba(201,160,99,.11)}
-.hero::before{width:520px;height:520px;right:-220px;top:-180px}.hero::after{width:360px;height:360px;left:-180px;bottom:-170px}
-.hero-inner{max-width:760px;position:relative;z-index:2;animation:heroFirstIn 1s var(--motion) both}
-@keyframes heroFirstIn{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}
-.hero h1{font-size:clamp(3rem,7vw,6rem);line-height:.92;text-wrap:balance;text-shadow:0 12px 40px rgba(0,0,0,.22)}
-.kinetic-line{display:block;overflow:hidden}.kinetic-word{display:inline-block;opacity:0;filter:blur(12px);transform:translateY(105%) rotate(2deg);animation:wordIn .95s var(--motion) forwards}
-@keyframes wordIn{to{opacity:1;filter:blur(0);transform:translateY(0) rotate(0)}}
-.hero .tagline{font-family:'Playfair Display',serif;font-size:1.35rem;margin:24px 0 18px;color:var(--gold-soft);font-style:italic}
-.hero p.sub{max-width:610px;color:#eadfce;line-height:1.85}
-.wave-visualizer{margin:30px auto 0;max-width:520px;height:52px;display:flex;align-items:center;justify-content:center;gap:3px;opacity:.82}
-.wave-visualizer .bar{width:5px;border-radius:999px;background:linear-gradient(180deg,var(--gold),var(--gold-soft));animation:barPulse 1.4s ease-in-out infinite}
-.wave-visualizer .bar:nth-child(odd){animation-duration:1.2s}.wave-visualizer .bar:nth-child(2n){animation-duration:1.5s}.wave-visualizer .bar:nth-child(3n){animation-duration:1.7s}
-@keyframes barPulse{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1.15)}}
-.hero-actions{margin-top:34px}.btn-primary{position:relative;overflow:hidden}.btn-primary::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.32) 50%,transparent 80%);transform:translateX(-130%);transition:transform .65s var(--motion)}.btn-primary:hover::after{transform:translateX(130%)}
-.bg-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}.bg-particles span{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,var(--gold),transparent 70%);opacity:.25;filter:blur(1px);animation:float 18s infinite ease-in-out}.bg-particles span:nth-child(1){left:10%;top:20%}.bg-particles span:nth-child(2){left:30%;top:60%;animation-delay:3s}.bg-particles span:nth-child(3){left:60%;top:30%;animation-delay:6s}.bg-particles span:nth-child(4){left:80%;top:70%;animation-delay:9s}.bg-particles span:nth-child(5){left:50%;top:10%;animation-delay:12s}@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(15px,-25px) scale(1.15)}}
-.strip{background:linear-gradient(90deg,#3b0d1c,#5a1629,#3b0d1c);box-shadow:inset 0 1px rgba(228,201,155,.12),inset 0 -1px rgba(0,0,0,.18)}
-.marquee{overflow:hidden;white-space:nowrap;border-top:1px solid rgba(201,160,99,.2);border-bottom:1px solid rgba(201,160,99,.2);background:rgba(42,10,16,.96)}.marquee-track{display:inline-flex;width:max-content;gap:42px;padding:13px 0;animation:marquee 28s linear infinite}.marquee-track span{font-family:'Playfair Display',serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)}@keyframes marquee{to{transform:translateX(-50%)}}
-/* cursor movement */
-body.cursor-glow::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;background:radial-gradient(520px circle at var(--mx,50%) var(--my,50%),rgba(201,160,99,.055),transparent 62%);opacity:1}
-.liquid-cursor{position:fixed;left:0;top:0;width:20px;height:20px;border-radius:50%;pointer-events:none;z-index:10000;mix-blend-mode:screen;background:radial-gradient(circle,var(--gold-bright,#f1d39f),rgba(201,160,99,.18) 42%,transparent 72%);transform:translate3d(-50%,-50%,0);opacity:0;transition:opacity .25s ease}
-body.cursor-active .liquid-cursor{opacity:1}.cursor-blob{position:fixed;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:9997;background:rgba(228,201,155,.34);filter:blur(1px);transform:translate(-50%,-50%);animation:cursorFade .75s ease-out forwards}@keyframes cursorFade{0%{opacity:.7;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.8)}}
-@media(max-width:820px){.hero{min-height:calc(100svh - 70px);padding:70px 0 84px}.hero h1{font-size:clamp(2.7rem,12vw,4.3rem)}.hero-corner{display:none}.marquee-track{animation-duration:34s}}
-@media(max-width:600px){.hero h1{font-size:clamp(2.35rem,14vw,3.7rem)}.hero .tagline{font-size:1.18rem}.wave-visualizer{height:46px}.wave-visualizer .bar{width:4px}.hero-actions{gap:10px}.hero-actions a{width:100%;text-align:center}}
-@media(prefers-reduced-motion:reduce){.hero-inner,.kinetic-word,.bg-particles span,.marquee-track,.wave-visualizer .bar{animation:none!important}.kinetic-word{opacity:1;filter:none;transform:none}.liquid-cursor,.cursor-blob{display:none!important}}
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq-item{
+  border-bottom:
+    1px solid
+    var(--line);
+
+  padding:20px 0;
+}
+
+.faq-q{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  cursor:pointer;
+
+  font-weight:500;
+
+  font-size:.98rem;
+
+  gap:20px;
+}
+
+.faq-q .plus{
+  color:var(--gold);
+
+  font-size:1.2rem;
+
+  transition:
+    transform .25s;
+}
+
+.faq-item.open .plus{
+  transform:rotate(45deg);
+}
+
+.faq-a{
+  max-height:0;
+
+  overflow:hidden;
+
+  transition:
+    max-height .3s ease;
+}
+
+.faq-a p{
+  padding-top:12px;
+
+  color:#6B4A50;
+
+  font-size:.9rem;
+
+  line-height:1.7;
+
+  max-width:640px;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-grid{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:56px;
+}
+
+.contact-list{
+  margin-top:24px;
+}
+
+.contact-list a,
+.contact-list div{
+  display:flex;
+
+  gap:14px;
+
+  align-items:center;
+
+  padding:12px 0;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+  font-size:.92rem;
+
+  transition:
+    color .2s ease;
+}
+
+.contact-list a:hover{
+  color:var(--gold-soft);
+}
+
+form{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+}
+
+input,
+textarea{
+  background:
+    rgba(255,255,255,.03);
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:8px;
+
+  padding:13px 14px;
+
+  color:var(--cream);
+
+  font-family:'Poppins',sans-serif;
+
+  font-size:.9rem;
+
+  outline:none;
+
+  transition:
+    border-color .2s ease,
+    background .2s ease;
+}
+
+input:focus,
+textarea:focus{
+  border-color:var(--gold);
+
+  background:
+    rgba(255,255,255,.06);
+}
+
+textarea{
+  resize:vertical;
+
+  min-height:100px;
+}
+
+::placeholder{
+  color:var(--cream-dim);
+}
+
+form button{
+  margin-top:6px;
+
+  border:none;
+
+  cursor:pointer;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+  background:var(--maroon-900);
+
+  color:var(--cream-dim);
+
+  padding:56px 0 32px;
+}
+
+.foot-grid{
+  display:flex;
+
+  justify-content:space-between;
+
+  flex-wrap:wrap;
+
+  gap:40px;
+}
+
+.foot-grid .logo{
+  color:var(--cream);
+
+  font-size:1.2rem;
+}
+
+.foot-grid p{
+  font-size:.85rem;
+
+  margin-top:10px;
+
+  max-width:280px;
+
+  line-height:1.6;
+}
+
+#qrcode{
+  background:var(--cream);
+
+  padding:10px;
+
+  border-radius:4px;
+
+  display:inline-block;
+}
+
+.qr-cap{
+  font-size:.7rem;
+
+  letter-spacing:.1em;
+
+  color:var(--gold-soft);
+
+  margin-top:10px;
+
+  text-align:center;
+}
+
+.foot-bottom{
+  margin-top:48px;
+
+  padding-top:24px;
+
+  border-top:
+    1px solid
+    var(--line);
+
+  display:flex;
+
+  justify-content:space-between;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  font-size:.78rem;
+}
+
+/* =========================================================
+   DOODLES
+========================================================= */
+
+.doodle{
+  position:absolute;
+
+  color:var(--gold);
+
+  opacity:.35;
+
+  pointer-events:none;
+
+  user-select:none;
+
+  z-index:1;
+}
+
+.doodle-heart{
+  font-size:28px;
+}
+
+.doodle-star{
+  font-size:20px;
+}
+
+.doodle-note{
+  font-size:24px;
+}
+
+/* =========================================================
+   CURSOR EFFECT
+========================================================= */
+
+#liquidCursor{
+  position:fixed;
+
+  left:0;
+  top:0;
+
+  width:12px;
+  height:12px;
+
+  margin-left:-6px;
+  margin-top:-6px;
+
+  border-radius:50%;
+
+  background:
+    var(--gold);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  z-index:9999;
+
+  mix-blend-mode:screen;
+
+  transition:
+    opacity .25s ease,
+    transform .08s linear;
+}
+
+.cursor-active #liquidCursor{
+  opacity:.65;
+}
+
+.cursor-blob{
+  position:fixed;
+
+  width:14px;
+  height:14px;
+
+  margin-left:-7px;
+  margin-top:-7px;
+
+  border-radius:50%;
+
+  background:
+    rgba(201,160,99,.35);
+
+  pointer-events:none;
+
+  z-index:9998;
+
+  animation:
+    cursorBlob .8s ease-out forwards;
+}
+
+@keyframes cursorBlob{
+
+  0%{
+    opacity:.7;
+
+    transform:
+      scale(.4);
+  }
+
+  100%{
+    opacity:0;
+
+    transform:
+      scale(2.8);
+  }
+}
+
+/* =========================================================
+   CARD LIGHT
+========================================================= */
+
+.card,
+.price-card,
+.song-card{
+  position:relative;
+
+  overflow:hidden;
+}
+
+.card::after,
+.price-card::after,
+.song-card::after{
+  content:"";
+
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  left:
+    var(--mx,50%);
+
+  top:
+    var(--my,50%);
+
+  transform:
+    translate(-50%,-50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201,160,99,.11),
+      transparent 65%
+    );
+
+  pointer-events:none;
+
+  opacity:0;
+
+  transition:
+    opacity .25s ease;
+}
+
+.card:hover::after,
+.price-card:hover::after,
+.song-card:hover::after{
+  opacity:1;
+}
+
+/* =========================================================
+   REVEAL ANIMATIONS
+========================================================= */
+
+.reveal{
+  opacity:0;
+
+  filter:blur(10px);
+
+  transform:
+    translateY(24px);
+
+  transition:
+    opacity .8s ease,
+    filter .8s ease,
+    transform .8s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+
+  filter:blur(0);
+
+  transform:
+    translateY(0);
+}
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+:focus-visible{
+  outline:
+    2px solid
+    var(--gold);
+
+  outline-offset:2px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms!important;
+
+    animation-iteration-count:1!important;
+
+    transition-duration:.01ms!important;
+
+    scroll-behavior:auto!important;
+  }
+
+  .reveal{
+    opacity:1;
+    filter:none;
+    transform:none;
+  }
+
+}
+
 </style>
 </head>
+
 <body>
 
-<div class="page-veil" id="pageVeil" aria-hidden="true"></div>
-<div class="liquid-cursor" id="liquidCursor" aria-hidden="true"></div>
-<nav>
+<!-- =======================================================
+     CURSOR
+======================================================= -->
+
+<div id="liquidCursor"></div>
+
+
+<!-- =======================================================
+     NAVIGATION
+======================================================= -->
+
+<nav id="navbar">
+
   <div class="wrap">
-    <a class="brandmark" href="#top">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-9.6-9.4C1 7.4 3 4.5 6.2 4.2c2-.2 3.6 1 4.8 2.8 1.2-1.8 2.8-3 4.8-2.8C19 4.5 21 7.4 19.6 10.6 17.5 15.4 12 20 12 20Z" stroke="#C9A063" stroke-width="1.3"/><path d="M14.5 9.2v3.6a1.4 1.4 0 1 1-.7-1.2V8l3-.8v2.6" stroke="#C9A063" stroke-width="1.1" stroke-linecap="round"/></svg>
+
+    <a href="#home" class="brandmark">
       <span>Heart Score</span>
     </a>
-    <div class="navlinks" id="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#portfolio">Portfolio</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
-    <a class="navcta" href="#contact">Create Your Song</a><button class="burger" id="burger" aria-label="Menu">☰</button>
+
+    <div class="navlinks" id="navlinks">
+
+      <a href="#services">Services</a>
+
+      <a href="#process">Process</a>
+
+      <a href="#portfolio">Songs</a>
+
+      <a href="#pricing">Pricing</a>
+
+      <a href="#about">About</a>
+
+      <a href="#faq">FAQ</a>
+
+      <a href="#contact">Contact</a>
+
+    </div>
+
+    <a href="#contact" class="navcta">
+      Create Your Song
+    </a>
+
+    <button
+      class="burger"
+      id="burger"
+      aria-label="Open navigation"
+      type="button"
+    >
+      ☰
+    </button>
+
   </div>
+
 </nav>
-<section class="hero" id="top">
-  <div class="bg-particles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-  <span class="hero-corner left">MUSIC<br>PEOPLE<br>EMOTIONS<br>FOREVER</span><span class="hero-corner right">MORE<br>THAN<br>MUSIC</span>
-  <div class="wrap hero-inner">
-    <div class="eyebrow">PERSONALISED SONGS · MEMORIES · MOMENTS</div>
-    <h1 aria-label="Your story deserves its own soundtrack."><span class="kinetic-line"><span class="kinetic-word">Your</span> <span class="kinetic-word" style="animation-delay:.06s">story</span> <span class="kinetic-word" style="animation-delay:.12s">deserves</span></span><span class="kinetic-line"><span class="kinetic-word" style="animation-delay:.2s">its</span> <span class="kinetic-word" style="animation-delay:.26s">own</span> <span class="kinetic-word" style="animation-delay:.32s">soundtrack.</span></span></h1>
-    <p class="tagline">Turn your story into a song.</p>
-    <p class="sub">Give your memories a melody. We turn your story, your people and your moments into an original song, composed and written only for you.</p>
-    <div class="wave-visualizer" aria-hidden="true"></div>
-    <div class="hero-actions"><a class="btn-primary" href="#contact">Create Your Song</a><a class="btn-ghost" href="https://wa.me/919489259322" target="_blank" rel="noopener">Message on WhatsApp</a></div>
-  </div>
-</section>
-<div class="strip">Same stories. Different soundtracks.</div>
-<div class="marquee" aria-label="Heart Score themes"><div class="marquee-track"><span>Your story</span><span>•</span><span>Your people</span><span>•</span><span>Your moments</span><span>•</span><span>Your melody</span><span>•</span><span>Your story</span><span>•</span><span>Your people</span><span>•</span><span>Your moments</span><span>•</span><span>Your melody</span><span>•</span></div></div>
 
-<section id="services">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">WHAT WE MAKE</div>
-      <h2>Every song, composed from scratch</h2>
-      <p>No templates, no stock tracks — every piece starts as a blank page and becomes yours.</p>
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+
+<header class="hero" id="home">
+
+  <div class="hero-corner left">
+    YOUR STORY<br>
+    YOUR SOUND<br>
+    YOUR SONG
+  </div>
+
+  <div class="hero-corner right">
+    ORIGINAL MUSIC<br>
+    MADE FOR<br>
+    YOUR MOMENT
+  </div>
+
+
+  <!-- subtle doodles -->
+
+  <div
+    class="doodle doodle-heart"
+    style="left:11%;top:24%;"
+  >
+    ♡
+  </div>
+
+  <div
+    class="doodle doodle-star"
+    style="right:13%;top:32%;"
+  >
+    ✦
+  </div>
+
+  <div
+    class="doodle doodle-note"
+    style="left:17%;bottom:20%;"
+  >
+    ♪
+  </div>
+
+  <div
+    class="doodle doodle-note"
+    style="right:18%;bottom:17%;"
+  >
+    ♫
+  </div>
+
+
+  <div class="hero-inner">
+
+    <div class="eyebrow">
+      ✦ MADE FOR THE MOMENTS YOU'LL NEVER FORGET ✦
     </div>
+
+    <div class="tagline">
+      Turn your story into a song.
+    </div>
+
+    <h1>
+      Your story deserves<br>
+      its own soundtrack.
+    </h1>
+
+    <p class="sub">
+      Personalised original music created from your memories,
+      your people, your words and the little moments that
+      make your story yours.
+    </p>
+
+
+    <!-- Music visualizer -->
+
+    <div class="wave">
+
+      <div
+        class="wave-visualizer"
+        aria-label="Animated music visualizer"
+      ></div>
+
+    </div>
+
+
+    <!-- Hero audio -->
+
+    <div class="hero-player">
+
+      <div class="hero-player-label">
+        LISTEN TO HEART SCORE
+      </div>
+
+      <audio controls preload="metadata">
+
+        <source
+          src="thural.mp3"
+          type="audio/mpeg"
+        >
+
+        Your browser does not support
+        the audio element.
+
+      </audio>
+
+    </div>
+
+
+    <!-- Buttons -->
+
+    <div class="hero-actions">
+
+      <a
+        href="#contact"
+        class="btn-primary"
+      >
+        Create Your Song
+      </a>
+
+      <a
+        href="#portfolio"
+        class="btn-ghost"
+      >
+        Listen to Our Work
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =======================================================
+     STRIP
+======================================================= -->
+
+<div class="strip">
+  Every memory has a melody.
+</div>
+
+
+<!-- =======================================================
+     SERVICES
+======================================================= -->
+
+<section
+  id="services"
+  class="reveal"
+>
+
+  <div class="wrap">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        WHAT WE CREATE
+      </div>
+
+      <h2>
+        Music made around your story
+      </h2>
+
+      <p>
+        No templates. No generic lyrics.
+        Every Heart Score begins with your story.
+      </p>
+
+    </div>
+
+
     <div class="grid5">
-      <div class="card"><h3>Original Celebration Song</h3><p>A brand-new composition with lyrics written around your people, milestones, memories and the moments that matter.</p></div>
-      <div class="card"><h3>Event Film Soundtrack</h3><p>Background music scored to move with your event video, so every frame lands with the right feeling.</p></div>
-      <div class="card"><h3>Special Entry Song</h3><p>A short, powerful track built for the a special entrance or unforgettable moment.</p></div>
-      <div class="card"><h3>Bilingual & Multi-language</h3><p>Hindi with English, Tamil with English, Telugu with Bengali — blended to reflect where you both come from.</p></div>
-      <div class="card"><h3>Reimagined Covers</h3><p>A song you already love, reimagined with lyrics around your story and your people.</p></div>
+
+      <div class="card">
+
+        <h3>
+          Original Celebration Song
+        </h3>
+
+        <p>
+          A brand-new composition with lyrics
+          written around your people, milestones,
+          memories and the moments that matter.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Event Film Soundtrack
+        </h3>
+
+        <p>
+          Background music scored to move with
+          your event video, so every frame lands
+          with the right feeling.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Special Entry Song
+        </h3>
+
+        <p>
+          A short, powerful track built for a
+          special entrance or unforgettable moment.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Bilingual & Multi-language
+        </h3>
+
+        <p>
+          Hindi with English, Tamil with English,
+          Telugu with Bengali — blended to reflect
+          where your story comes from.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Reimagined Covers
+        </h3>
+
+        <p>
+          A song you already love, reimagined
+          with lyrics around your story and
+          your people.
+        </p>
+
+      </div>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="process" style="background:#FBF6EE">
+
+<!-- =======================================================
+     PROCESS
+======================================================= -->
+
+<section
+  id="process"
+  class="reveal"
+  style="background:#FBF6EE"
+>
+
   <div class="wrap">
+
     <div class="section-head">
-      <div class="eyebrow">HOW IT WORKS</div>
-      <h2>From your story to your song</h2>
+
+      <div class="eyebrow">
+        HOW IT WORKS
+      </div>
+
+      <h2>
+        From your story to your song
+      </h2>
+
     </div>
+
+
     <div class="process">
-      <div class="step"><div class="num">01</div><h3>Tell Your Story</h3><p>Share how you met, your milestones, photos and voice notes — anything that makes your story yours.</p></div>
-      <div class="step"><div class="num">02</div><h3>Choose Your Style</h3><p>Pick a genre, language and mood, and send over any reference songs you love.</p></div>
-      <div class="step"><div class="num">03</div><h3>Composition & Writing</h3><p>We compose the music and write the lyrics, then send you a first draft.</p></div>
-      <div class="step"><div class="num">04</div><h3>Review & Refine</h3><p>You tell us what to adjust — a line, a verse, a feeling — and we refine it.</p></div>
-      <div class="step"><div class="num">05</div><h3>Receive Your Song</h3><p>Your finished song arrives as a high-quality file, ready for your celebration.</p></div>
+
+      <div class="step">
+
+        <div class="num">
+          01
+        </div>
+
+        <h3>
+          Tell Your Story
+        </h3>
+
+        <p>
+          Share how you met, your milestones,
+          photos and voice notes — anything that
+          makes your story yours.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="num">
+          02
+        </div>
+
+        <h3>
+          Choose Your Style
+        </h3>
+
+        <p>
+          Pick a genre, language and mood,
+          and send over any reference songs
+          you love.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="num">
+          03
+        </div>
+
+        <h3>
+          Composition & Writing
+        </h3>
+
+        <p>
+          We compose the music and write the lyrics,
+          then send you a first draft.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="num">
+          04
+        </div>
+
+        <h3>
+          Review & Refine
+        </h3>
+
+        <p>
+          You tell us what to adjust — a line,
+          a verse, a feeling — and we refine it.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="num">
+          05
+        </div>
+
+        <h3>
+          Receive Your Song
+        </h3>
+
+        <p>
+          Your finished song arrives as a
+          high-quality file, ready for your
+          celebration.
+        </p>
+
+      </div>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="portfolio" class="bg-dark">
+
+<!-- =======================================================
+     PORTFOLIO
+======================================================= -->
+
+<section
+  id="portfolio"
+  class="bg-dark reveal"
+>
+
   <div class="wrap">
+
     <div class="section-head">
-      <div class="eyebrow" style="color:var(--gold-soft)">SONGS WE'VE MADE</div>
-      <h2>Stories, set to music</h2>
-      <p>A few stories turned into songs.</p>
+
+      <div
+        class="eyebrow"
+        style="color:var(--gold-soft)"
+      >
+        SONGS WE'VE MADE
+      </div>
+
+      <h2>
+        Stories, set to music
+      </h2>
+
+      <p>
+        A few stories turned into songs.
+      </p>
+
     </div>
+
+
     <div class="song-grid">
+
+
+      <!-- THURAL -->
+
       <div class="song-card">
-        <h3>Song Title Here</h3>
-        <div class="who">Names · Genre</div>
-        <audio controls data-song-slot="1"><source src="" type="audio/mpeg"></audio>
-        <p class="story">A line or two about the story goes here once you share it with us.</p>
+
+        <h3>
+          Thural
+        </h3>
+
+        <div class="who">
+          Heart Score · Original Demo
+        </div>
+
+        <audio
+          controls
+          preload="metadata"
+          data-song-slot="1"
+        >
+
+          <source
+            src="thural.mp3"
+            type="audio/mpeg"
+          >
+
+          Your browser does not support
+          the audio element.
+
+        </audio>
+
+        <p class="story">
+          A featured Heart Score track —
+          a first glimpse of how a story
+          can become music.
+        </p>
+
       </div>
+
+
+      <!-- SECOND SONG -->
+
       <div class="song-card">
-        <h3>Song Title Here</h3>
-        <div class="who">Names · Genre</div>
-        <audio controls data-song-slot="2"><source src="" type="audio/mpeg"></audio>
-        <p class="story">A line or two about the story goes here once you share it with us.</p>
+
+        <h3>
+          Song Title Here
+        </h3>
+
+        <div class="who">
+          Names · Genre
+        </div>
+
+        <audio
+          controls
+          data-song-slot="2"
+        >
+
+          <source
+            src=""
+            type="audio/mpeg"
+          >
+
+        </audio>
+
+        <p class="story">
+          A line or two about the story goes
+          here once you share it with us.
+        </p>
+
       </div>
+
+
+      <!-- THIRD SONG -->
+
       <div class="song-card">
-        <h3>Song Title Here</h3>
-        <div class="who">Names · Genre</div>
-        <audio controls data-song-slot="3"><source src="" type="audio/mpeg"></audio>
-        <p class="story">A line or two about the story goes here once you share it with us.</p>
+
+        <h3>
+          Song Title Here
+        </h3>
+
+        <div class="who">
+          Names · Genre
+        </div>
+
+        <audio
+          controls
+          data-song-slot="3"
+        >
+
+          <source
+            src=""
+            type="audio/mpeg"
+          >
+
+        </audio>
+
+        <p class="story">
+          A line or two about the story goes
+          here once you share it with us.
+        </p>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="pricing">
+
+<!-- =======================================================
+     PRICING
+======================================================= -->
+
+<section
+  id="pricing"
+  class="reveal"
+>
+
   <div class="wrap">
+
     <div class="section-head">
-      <div class="eyebrow">INVESTMENT</div>
-      <h2>A tier for every kind of celebration</h2>
+
+      <div class="eyebrow">
+        INVESTMENT
+      </div>
+
+      <h2>
+        A tier for every kind of celebration
+      </h2>
+
     </div>
+
+
     <div class="price-grid">
+
+
+      <!-- BASIC -->
+
       <div class="price-card">
-        <h3>Basic</h3>
-        <div class="amount">₹25,000 <small>– ₹40,000</small></div>
+
+        <h3>
+          Basic
+        </h3>
+
+        <div class="amount">
+          ₹25,000
+          <small>
+            – ₹40,000
+          </small>
+        </div>
+
         <ul>
-          <li>One original song (3–4 min)</li>
-          <li>Single language</li>
-          <li>2 rounds of revisions</li>
-          <li>4–6 week delivery</li>
+
+          <li>
+            One original song (3–4 min)
+          </li>
+
+          <li>
+            Single language
+          </li>
+
+          <li>
+            2 rounds of revisions
+          </li>
+
+          <li>
+            4–6 week delivery
+          </li>
+
         </ul>
-        <a class="cta" href="#contact">Start with Basic</a>
+
+        <a
+          class="cta"
+          href="#contact"
+        >
+          Start with Basic
+        </a>
+
       </div>
+
+
+      <!-- PREMIUM -->
+
       <div class="price-card featured">
-        <h3>Premium</h3>
-        <div class="amount">₹50,000 <small>– ₹75,000</small></div>
+
+        <h3>
+          Premium
+        </h3>
+
+        <div class="amount">
+          ₹50,000
+          <small>
+            – ₹75,000
+          </small>
+        </div>
+
         <ul>
-          <li>Original song + special entry remix</li>
-          <li>Bilingual support</li>
-          <li>4 rounds of revisions</li>
-          <li>Event film soundtrack</li>
+
+          <li>
+            Original song + special entry remix
+          </li>
+
+          <li>
+            Bilingual support
+          </li>
+
+          <li>
+            4 rounds of revisions
+          </li>
+
+          <li>
+            Event film soundtrack
+          </li>
+
         </ul>
-        <a class="cta" href="#contact">Start with Premium</a>
+
+        <a
+          class="cta"
+          href="#contact"
+        >
+          Start with Premium
+        </a>
+
       </div>
+
+
+      <!-- LUXURY -->
+
       <div class="price-card">
-        <h3>Luxury</h3>
-        <div class="amount">₹1,00,000<small>+</small></div>
+
+        <h3>
+          Luxury
+        </h3>
+
+        <div class="amount">
+          ₹1,00,000
+          <small>
+            +
+          </small>
+        </div>
+
         <ul>
-          <li>Original song + reimagined cover</li>
-          <li>Multi-language blend</li>
-          <li>Unlimited revisions</li>
-          <li>Full suite: entry, film, special moment</li>
-          <li>Personal calls with the composer</li>
+
+          <li>
+            Original song + reimagined cover
+          </li>
+
+          <li>
+            Multi-language blend
+          </li>
+
+          <li>
+            Unlimited revisions
+          </li>
+
+          <li>
+            Full suite: entry, film,
+            special moment
+          </li>
+
+          <li>
+            Personal calls with the composer
+          </li>
+
         </ul>
-        <a class="cta" href="#contact">Start with Luxury</a>
+
+        <a
+          class="cta"
+          href="#contact"
+        >
+          Start with Luxury
+        </a>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="about" style="background:#FBF6EE">
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+
+<section
+  id="about"
+  class="reveal"
+  style="background:#FBF6EE"
+>
+
   <div class="wrap about">
+
+
     <div class="about-mark">
-      <svg width="70" height="70" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-9.6-9.4C1 7.4 3 4.5 6.2 4.2c2-.2 3.6 1 4.8 2.8 1.2-1.8 2.8-3 4.8-2.8C19 4.5 21 7.4 19.6 10.6 17.5 15.4 12 20 12 20Z" stroke="#C9A063" stroke-width="1.2"/></svg>
+
+      <svg
+        width="70"
+        height="70"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M12 20s-7.5-4.6-9.6-9.4C1 7.4 3 4.5 6.2 4.2c2-.2 3.6 1 4.8 2.8 1.2-1.8 2.8-3 4.8-2.8C19 4.5 21 7.4 19.6 10.6 17.5 15.4 12 20 12 20Z"
+          stroke="#C9A063"
+          stroke-width="1.2"
+        />
+
+      </svg>
+
     </div>
+
+
     <div>
-      <div class="eyebrow">THE ARTIST</div>
-      <h2>About Heart Score</h2>
-      <p>Heart Score is built around one idea: that every person's or group's story is already a song, waiting to be written down. Founded by Vinodhan G, Heart Score composes original celebration music — not covers, not templates — built from your voice notes, your photos and the small details only the two of you would remember.</p>
-      <div class="role">FOUNDER — VINODHAN G</div>
+
+      <div class="eyebrow">
+        THE ARTIST
+      </div>
+
+      <h2>
+        About Heart Score
+      </h2>
+
+      <p>
+        Heart Score is built around one idea:
+        that every person's or group's story is
+        already a song, waiting to be written down.
+        Founded by Vinodhan G, Heart Score composes
+        original celebration music — not covers,
+        not templates — built from your voice notes,
+        your photos and the small details only
+        the people in your story would remember.
+      </p>
+
+      <div class="role">
+        FOUNDER — VINODHAN G
+      </div>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="faq">
-  <div class="wrap" style="max-width:760px">
+
+<!-- =======================================================
+     FAQ
+======================================================= -->
+
+<section
+  id="faq"
+  class="reveal"
+>
+
+  <div
+    class="wrap"
+    style="max-width:760px"
+  >
+
     <div class="section-head">
-      <div class="eyebrow">GOOD TO KNOW</div>
-      <h2>Frequently asked questions</h2>
+
+      <div class="eyebrow">
+        GOOD TO KNOW
+      </div>
+
+      <h2>
+        Frequently asked questions
+      </h2>
+
     </div>
+
+
     <div id="faqlist">
+
+
       <div class="faq-item">
-        <div class="faq-q"><span>How long does the process take?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Most songs take 4–6 weeks from your first questionnaire to final delivery, depending on the package and revisions.</p></div>
+
+        <div class="faq-q">
+
+          <span>
+            How long does the process take?
+          </span>
+
+          <span class="plus">
+            +
+          </span>
+
+        </div>
+
+        <div class="faq-a">
+
+          <p>
+            Most songs take 4–6 weeks from your
+            first questionnaire to final delivery,
+            depending on the package and revisions.
+          </p>
+
+        </div>
+
       </div>
+
+
       <div class="faq-item">
-        <div class="faq-q"><span>What if we don't like the first draft?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Every package includes revision rounds. Tell us exactly what to change — a line, a verse, the mood — and we'll refine it until it feels right.</p></div>
+
+        <div class="faq-q">
+
+          <span>
+            What if we don't like the first draft?
+          </span>
+
+          <span class="plus">
+            +
+          </span>
+
+        </div>
+
+        <div class="faq-a">
+
+          <p>
+            Every package includes revision rounds.
+            Tell us exactly what to change — a line,
+            a verse, the mood — and we'll refine it
+            until it feels right.
+          </p>
+
+        </div>
+
       </div>
-<div class="faq-item">
-        <div class="faq-q"><span>Can we use the song commercially?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Yes — once delivered, the song is yours to use for your event films, reels and personal keepsakes.</p></div>
-      </div>
+
+
       <div class="faq-item">
-        <div class="faq-q"><span>Do you work with couples outside India?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Yes, the entire process runs over WhatsApp, email and video calls, so distance isn't a barrier.</p></div>
+
+        <div class="faq-q">
+
+          <span>
+            Can we use the song commercially?
+          </span>
+
+          <span class="plus">
+            +
+          </span>
+
+        </div>
+
+        <div class="faq-a">
+
+          <p>
+            Yes — once delivered, the song is yours
+            to use for your event films, reels and
+            personal keepsakes.
+          </p>
+
+        </div>
+
       </div>
+
+
       <div class="faq-item">
-        <div class="faq-q"><span>What if we're not musical at all?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>That's the point of Heart Score — you bring the story, we bring the music. No musical background needed.</p></div>
+
+        <div class="faq-q">
+
+          <span>
+            Do you work with people outside India?
+          </span>
+
+          <span class="plus">
+            +
+          </span>
+
+        </div>
+
+        <div class="faq-a">
+
+          <p>
+            Yes, the entire process runs over WhatsApp,
+            email and video calls, so distance isn't
+            a barrier.
+          </p>
+
+        </div>
+
       </div>
+
+
+      <div class="faq-item">
+
+        <div class="faq-q">
+
+          <span>
+            What if we're not musical at all?
+          </span>
+
+          <span class="plus">
+            +
+          </span>
+
+        </div>
+
+        <div class="faq-a">
+
+          <p>
+            That's the point of Heart Score —
+            you bring the story, we bring the music.
+            No musical background needed.
+          </p>
+
+        </div>
+
+      </div>
+
+
     </div>
+
   </div>
+
 </section>
 
-<section id="contact" class="bg-dark">
+
+<!-- =======================================================
+     CONTACT
+======================================================= -->
+
+<section
+  id="contact"
+  class="bg-dark reveal"
+>
+
   <div class="wrap contact-grid">
+
+
     <div>
-      <div class="eyebrow" style="color:var(--gold-soft)">GET IN TOUCH</div>
-      <h2 style="font-size:1.8rem;font-weight:600;margin-top:8px">Let's write your song</h2>
-      <p style="color:var(--cream-dim);margin-top:14px;line-height:1.7">Reach out on WhatsApp for the fastest response, or send us a note below.</p>
-      <div class="contact-list" style="margin-top:24px">
-        <a href="tel:+919489259322">📞 +91 94892 59322</a>
-        <a href="mailto:helloheartscore@gmail.com">✉️ helloheartscore@gmail.com</a>
-        <a href="https://instagram.com/heart.score" target="_blank" rel="noopener">📷 heart.score</a>
-        <a href="https://wa.me/919489259322" target="_blank" rel="noopener">💬 Message on WhatsApp</a>
+
+      <div
+        class="eyebrow"
+        style="color:var(--gold-soft)"
+      >
+        GET IN TOUCH
       </div>
+
+      <h2
+        style="
+          font-size:1.8rem;
+          font-weight:600;
+          margin-top:8px;
+        "
+      >
+        Let's write your song
+      </h2>
+
+      <p
+        style="
+          color:var(--cream-dim);
+          margin-top:14px;
+          line-height:1.7;
+        "
+      >
+        Reach out on WhatsApp for the fastest
+        response, or send us a note below.
+      </p>
+
+
+      <div class="contact-list">
+
+
+        <a href="tel:+919489259322">
+          📞 +91 94892 59322
+        </a>
+
+
+        <a href="mailto:helloheartscore@gmail.com">
+          ✉️ helloheartscore@gmail.com
+        </a>
+
+
+        <a
+          href="https://instagram.com/heart.score"
+          target="_blank"
+          rel="noopener"
+        >
+          📷 heart.score
+        </a>
+
+
+        <a
+          href="https://wa.me/919489259322"
+          target="_blank"
+          rel="noopener"
+        >
+          💬 Message on WhatsApp
+        </a>
+
+
+      </div>
+
     </div>
-    <form action="mailto:helloheartscore@gmail.com" method="post" enctype="text/plain">
-      <input type="text" placeholder="Your names" required>
-      <input type="email" placeholder="Email" required>
-      <input type="text" placeholder="Event / celebration date (approx.)">
-      <textarea placeholder="Tell us a little about your story..."></textarea>
-      <button type="submit" class="btn-primary" style="border:none;cursor:pointer">Send</button>
+
+
+    <form
+      action="mailto:helloheartscore@gmail.com"
+      method="post"
+      enctype="text/plain"
+    >
+
+      <input
+        type="text"
+        placeholder="Your names"
+        required
+      >
+
+      <input
+        type="email"
+        placeholder="Email"
+        required
+      >
+
+      <input
+        type="text"
+        placeholder="Event / celebration date (approx.)"
+      >
+
+      <textarea
+        placeholder="Tell us a little about your story..."
+      ></textarea>
+
+      <button
+        type="submit"
+        class="btn-primary"
+      >
+        Send
+      </button>
+
     </form>
+
   </div>
+
 </section>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
 
 <footer>
+
   <div class="wrap foot-grid">
+
+
     <div>
-      <div class="brandmark logo">Heart Score</div>
-      <p>Personalised songs · memories · moments. Your story deserves its own soundtrack.</p>
+
+      <div class="brandmark logo">
+        Heart Score
+      </div>
+
+      <p>
+        Personalised songs · memories · moments.
+        Your story deserves its own soundtrack.
+      </p>
+
     </div>
+
+
     <div style="text-align:center">
+
       <div id="qrcode"></div>
-      <div class="qr-cap">SCAN TO FEEL THE MUSIC</div>
+
+      <div class="qr-cap">
+        SCAN TO FEEL THE MUSIC
+      </div>
+
     </div>
+
+
   </div>
+
+
   <div class="wrap foot-bottom">
-    <span>© 2026 Heart Score. Founder / Vinodhan G.</span>
-    <span>helloheartscore@gmail.com · +91 94892 59322</span>
+
+    <span>
+      © 2026 Heart Score.
+      Founder / Vinodhan G.
+    </span>
+
+    <span>
+      helloheartscore@gmail.com ·
+      +91 94892 59322
+    </span>
+
   </div>
+
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- =======================================================
+     QR CODE LIBRARY
+======================================================= -->
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+></script>
+
+
 <script>
-  // mobile nav
-  const burger=document.getElementById('burger'),navlinks=document.getElementById('navlinks');
-  burger.addEventListener('click',()=>navlinks.classList.toggle('open'));
-  navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navlinks.classList.remove('open')));
 
-  // faq accordion
-  document.querySelectorAll('.faq-item').forEach(item=>{
-    const q=item.querySelector('.faq-q'), a=item.querySelector('.faq-a');
-    if(!q||!a) return;
-    q.addEventListener('click',()=>{
-      const isOpen=item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
-      if(!isOpen){item.classList.add('open'); a.style.maxHeight=a.scrollHeight+'px';}
-    });
-  });
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
 
-  // QR code -> points to this very page, wherever it's hosted
-  try{
-    new QRCode(document.getElementById("qrcode"), {
-      text: window.location.href,
-      width: 130, height: 130,
-      colorDark: "#2A0A10",
-      colorLight: "#F6EEE3",
-      correctLevel: QRCode.CorrectLevel.M
-    });
-  }catch(e){ console.error('QR generation failed', e); }
+const burger =
+  document.getElementById('burger');
+
+const navlinks =
+  document.getElementById('navlinks');
+
+const navbar =
+  document.getElementById('navbar');
 
 
-  // First-page wave visualizer + cursor movement/effects
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const wave = document.querySelector('.wave-visualizer');
-  if(wave){ for(let i=0;i<32;i++){ const b=document.createElement('span'); b.className='bar'; b.style.height=(10+Math.random()*80)+'%'; b.style.animationDelay=(-Math.random()*1.4)+'s'; wave.appendChild(b); } }
-  const cursor=document.getElementById('liquidCursor'); let lastCursor=0;
-  addEventListener('pointermove',e=>{
-    document.body.style.setProperty('--mx',e.clientX+'px');
-    document.body.style.setProperty('--my',e.clientY+'px');
-    document.body.classList.add('cursor-glow','cursor-active');
-    if(cursor) cursor.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0)`;
-    if(!reduceMotion && performance.now()-lastCursor>45){
-      lastCursor=performance.now(); const blob=document.createElement('span'); blob.className='cursor-blob'; blob.style.left=e.clientX+'px'; blob.style.top=e.clientY+'px'; document.body.appendChild(blob); setTimeout(()=>blob.remove(),800);
-    }
-  },{passive:true});
-  if(!reduceMotion){
-    document.querySelectorAll('.btn-primary,.navcta').forEach(el=>el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.08}px,${(e.clientY-r.top-r.height/2)*.08}px)`;}));
+burger.addEventListener(
+  'click',
+  () => {
+
+    navlinks.classList.toggle('open');
+
   }
-  document.querySelectorAll('.btn-primary,.navcta').forEach(el=>el.addEventListener('pointerleave',()=>el.style.transform=''));
+);
+
+
+navlinks
+  .querySelectorAll('a')
+  .forEach(
+    link => {
+
+      link.addEventListener(
+        'click',
+        () => {
+
+          navlinks.classList.remove('open');
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   NAV SCROLL EFFECT
+========================================================= */
+
+window.addEventListener(
+  'scroll',
+  () => {
+
+    if(window.scrollY > 30){
+
+      navbar.classList.add('scrolled');
+
+    }else{
+
+      navbar.classList.remove('scrolled');
+
+    }
+
+  },
+  {passive:true}
+);
+
+
+/* =========================================================
+   ACTIVE NAVIGATION SECTION
+========================================================= */
+
+const sections =
+  document.querySelectorAll(
+    'section[id], header[id]'
+  );
+
+const navItems =
+  document.querySelectorAll(
+    '.navlinks a'
+  );
+
+
+const sectionObserver =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(
+        entry => {
+
+          if(entry.isIntersecting){
+
+            navItems.forEach(
+              link => {
+
+                link.classList.remove(
+                  'active'
+                );
+
+              }
+            );
+
+
+            const activeLink =
+              document.querySelector(
+                `.navlinks a[href="#${entry.target.id}"]`
+              );
+
+
+            if(activeLink){
+
+              activeLink.classList.add(
+                'active'
+              );
+
+            }
+
+          }
+
+        }
+      );
+
+    },
+    {
+      threshold:.25,
+      rootMargin:'-80px 0px -50% 0px'
+    }
+  );
+
+
+sections.forEach(
+  section => {
+
+    sectionObserver.observe(section);
+
+  }
+);
+
+
+/* =========================================================
+   FAQ ACCORDION
+========================================================= */
+
+document
+  .querySelectorAll('.faq-item')
+  .forEach(
+    item => {
+
+      const question =
+        item.querySelector('.faq-q');
+
+      const answer =
+        item.querySelector('.faq-a');
+
+
+      if(!question || !answer){
+        return;
+      }
+
+
+      question.addEventListener(
+        'click',
+        () => {
+
+          const isOpen =
+            item.classList.contains('open');
+
+
+          document
+            .querySelectorAll('.faq-item.open')
+            .forEach(
+              openItem => {
+
+                openItem
+                  .classList
+                  .remove('open');
+
+                openItem
+                  .querySelector('.faq-a')
+                  .style.maxHeight = null;
+
+              }
+            );
+
+
+          if(!isOpen){
+
+            item.classList.add('open');
+
+            answer.style.maxHeight =
+              answer.scrollHeight + 'px';
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   QR CODE
+========================================================= */
+
+try{
+
+  new QRCode(
+    document.getElementById('qrcode'),
+    {
+      text:window.location.href,
+
+      width:130,
+      height:130,
+
+      colorDark:'#2A0A10',
+
+      colorLight:'#F6EEE3',
+
+      correctLevel:
+        QRCode.CorrectLevel.M
+    }
+  );
+
+}catch(error){
+
+  console.error(
+    'QR generation failed:',
+    error
+  );
+
+}
+
+
+/* =========================================================
+   SCROLL REVEALS
+========================================================= */
+
+const revealElements =
+  document.querySelectorAll('.reveal');
+
+
+const revealObserver =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(
+        entry => {
+
+          if(entry.isIntersecting){
+
+            entry.target
+              .classList
+              .add('visible');
+
+            revealObserver
+              .unobserve(entry.target);
+
+          }
+
+        }
+      );
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+
+revealElements.forEach(
+  element => {
+
+    revealObserver.observe(element);
+
+  }
+);
+
+
+/* =========================================================
+   MUSIC VISUALIZER
+========================================================= */
+
+const reduceMotion =
+  window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+
+const wave =
+  document.querySelector(
+    '.wave-visualizer'
+  );
+
+
+if(wave){
+
+  for(
+    let i = 0;
+    i < 32;
+    i++
+  ){
+
+    const bar =
+      document.createElement('span');
+
+    bar.className =
+      'bar';
+
+    bar.style.height =
+      (10 + Math.random() * 80) + '%';
+
+    bar.style.animationDelay =
+      (-Math.random() * 1.4) + 's';
+
+    wave.appendChild(bar);
+
+  }
+
+}
+
+
+/* =========================================================
+   CURSOR EFFECT
+========================================================= */
+
+const cursor =
+  document.getElementById(
+    'liquidCursor'
+  );
+
+
+let lastCursor = 0;
+
+
+window.addEventListener(
+  'pointermove',
+  event => {
+
+    document.body.style.setProperty(
+      '--mx',
+      event.clientX + 'px'
+    );
+
+    document.body.style.setProperty(
+      '--my',
+      event.clientY + 'px'
+    );
+
+
+    document.body.classList.add(
+      'cursor-glow',
+      'cursor-active'
+    );
+
+
+    if(cursor){
+
+      cursor.style.transform =
+        `translate3d(
+          ${event.clientX}px,
+          ${event.clientY}px,
+          0
+        )`;
+
+    }
+
+
+    if(
+      !reduceMotion &&
+      performance.now() - lastCursor > 45
+    ){
+
+      lastCursor =
+        performance.now();
+
+
+      const blob =
+        document.createElement('span');
+
+      blob.className =
+        'cursor-blob';
+
+
+      blob.style.left =
+        event.clientX + 'px';
+
+      blob.style.top =
+        event.clientY + 'px';
+
+
+      document.body.appendChild(
+        blob
+      );
+
+
+      setTimeout(
+        () => blob.remove(),
+        800
+      );
+
+    }
+
+  },
+  {
+    passive:true
+  }
+);
+
+
+/* =========================================================
+   MAGNETIC BUTTON EFFECT
+========================================================= */
+
+if(!reduceMotion){
+
+  document
+    .querySelectorAll(
+      '.btn-primary, .navcta'
+    )
+    .forEach(
+      element => {
+
+        element.addEventListener(
+          'pointermove',
+          event => {
+
+            const rect =
+              element.getBoundingClientRect();
+
+
+            const x =
+              (
+                event.clientX -
+                rect.left -
+                rect.width / 2
+              ) * .08;
+
+
+            const y =
+              (
+                event.clientY -
+                rect.top -
+                rect.height / 2
+              ) * .08;
+
+
+            element.style.transform =
+              `translate(${x}px,${y}px)`;
+
+          }
+        );
+
+
+        element.addEventListener(
+          'pointerleave',
+          () => {
+
+            element.style.transform = '';
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   CARD 3D TILT
+========================================================= */
+
+if(!reduceMotion){
+
+  document
+    .querySelectorAll(
+      '.card, .price-card, .song-card'
+    )
+    .forEach(
+      card => {
+
+        card.addEventListener(
+          'pointermove',
+          event => {
+
+            const rect =
+              card.getBoundingClientRect();
+
+
+            const x =
+              event.clientX -
+              rect.left;
+
+
+            const y =
+              event.clientY -
+              rect.top;
+
+
+            const rotateY =
+              ((x / rect.width) - .5) * 5;
+
+
+            const rotateX =
+              ((y / rect.height) - .5) * -5;
+
+
+            card.style.transform =
+              `perspective(800px)
+               rotateX(${rotateX}deg)
+               rotateY(${rotateY}deg)
+               translateY(-5px)`;
+
+          }
+        );
+
+
+        card.addEventListener(
+          'pointerleave',
+          () => {
+
+            card.style.transform = '';
+
+          }
+        );
+
+      }
+    );
+
+
+  /* About mark */
+
+  const aboutMark =
+    document.querySelector(
+      '.about-mark'
+    );
+
+
+  if(aboutMark){
+
+    aboutMark.addEventListener(
+      'pointermove',
+      event => {
+
+        const rect =
+          aboutMark.getBoundingClientRect();
+
+
+        const x =
+          event.clientX -
+          rect.left;
+
+
+        const y =
+          event.clientY -
+          rect.top;
+
+
+        const rotateY =
+          ((x / rect.width) - .5) * 8;
+
+
+        const rotateX =
+          ((y / rect.height) - .5) * -8;
+
+
+        aboutMark.style.transform =
+          `perspective(700px)
+           rotateX(${rotateX}deg)
+           rotateY(${rotateY}deg)`;
+
+      }
+    );
+
+
+    aboutMark.addEventListener(
+      'pointerleave',
+      () => {
+
+        aboutMark.style.transform =
+          '';
+
+      }
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   CLICK PARTICLES
+========================================================= */
+
+if(!reduceMotion){
+
+  document
+    .querySelectorAll('.btn-primary')
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          'click',
+          event => {
+
+            for(
+              let i = 0;
+              i < 8;
+              i++
+            ){
+
+              const particle =
+                document.createElement(
+                  'span'
+                );
+
+
+              particle.style.position =
+                'fixed';
+
+              particle.style.left =
+                event.clientX + 'px';
+
+              particle.style.top =
+                event.clientY + 'px';
+
+              particle.style.width =
+                '5px';
+
+              particle.style.height =
+                '5px';
+
+              particle.style.borderRadius =
+                '50%';
+
+              particle.style.background =
+                'var(--gold)';
+
+              particle.style.pointerEvents =
+                'none';
+
+              particle.style.zIndex =
+                '10000';
+
+
+              const angle =
+                Math.random() *
+                Math.PI * 2;
+
+
+              const distance =
+                25 +
+                Math.random() * 35;
+
+
+              particle.animate(
+                [
+                  {
+                    transform:
+                      'translate(-50%,-50%) scale(1)',
+                    opacity:1
+                  },
+                  {
+                    transform:
+                      `translate(
+                        ${Math.cos(angle) * distance}px,
+                        ${Math.sin(angle) * distance}px
+                      )
+                      scale(0)`,
+                    opacity:0
+                  }
+                ],
+                {
+                  duration:550,
+                  easing:'cubic-bezier(.2,.8,.2,1)'
+                }
+              );
+
+
+              document.body.appendChild(
+                particle
+              );
+
+
+              setTimeout(
+                () => particle.remove(),
+                600
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   AUDIO VISUALIZER REACTION
+========================================================= */
+
+const heroAudio =
+  document.querySelector(
+    '.hero-player audio'
+  );
+
+
+if(heroAudio && wave){
+
+  heroAudio.addEventListener(
+    'play',
+    () => {
+
+      wave.classList.add(
+        'playing'
+      );
+
+      document
+        .querySelectorAll(
+          '.wave-visualizer .bar'
+        )
+        .forEach(
+          bar => {
+
+            bar.style.animationDuration =
+              (.45 + Math.random() * .55) +
+              's';
+
+          }
+        );
+
+    }
+  );
+
+
+  heroAudio.addEventListener(
+    'pause',
+    () => {
+
+      wave.classList.remove(
+        'playing'
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   SMOOTH NAVIGATION
+========================================================= */
+
+document
+  .querySelectorAll(
+    'a[href^="#"]'
+  )
+  .forEach(
+    link => {
+
+      link.addEventListener(
+        'click',
+        event => {
+
+          const id =
+            link.getAttribute('href');
+
+
+          if(
+            !id ||
+            id === '#'
+          ){
+            return;
+          }
+
+
+          const target =
+            document.querySelector(id);
+
+
+          if(target){
+
+            event.preventDefault();
+
+
+            target.scrollIntoView({
+              behavior:
+                reduceMotion
+                  ? 'auto'
+                  : 'smooth'
+            });
+
+          }
+
+        }
+      );
+
+    }
+  );
+
 </script>
+
 </body>
 </html>
